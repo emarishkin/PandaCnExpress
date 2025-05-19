@@ -41,7 +41,7 @@
 .form-box {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 20px;
 }
 
 .register-input {
@@ -64,7 +64,7 @@
     align-items: center;
     gap: 8px;
     font-size: 1rem;
-    font-size: 10px;
+    font-size: 13px;
 }
 
 .login-title {
