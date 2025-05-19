@@ -209,6 +209,11 @@ html, body {
   .form-content {
     max-width: 450px;
   }
+
+  .login-title {
+        font-size: 1.8rem;
+        margin-top: 85px;
+    }
 }
 
 /* --- Адаптив для десктопов (970px+) --- */

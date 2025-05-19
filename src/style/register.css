@@ -67,6 +67,10 @@
     font-size: 10px;
 }
 
+.login-title {
+        font-size: 1.8rem;
+        margin-top: 85px;
+    }
 
 .register-button {
   padding: 12px;
