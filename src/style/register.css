@@ -1,0 +1,94 @@
+/* === Общие настройки для страницы регистрации === */
+.register {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  position: relative;
+  padding: 40px 20px;
+}
+
+.logo-panda {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.logo-panda img {
+  height: 40px;
+}
+
+/* === Контейнер формы === */
+.register-form {
+  background-color: #1a1a1a;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-title {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.register-input {
+  padding: 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #222;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.register-input:focus {
+  outline: none;
+  border-color: #21e363;
+}
+
+.register-button {
+  padding: 12px;
+  background-color: #21e363;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.register-button:hover {
+  background-color: #038f31;
+}
+
+.login-link {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+
+.login-link a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .register-form {
+    padding: 30px 20px;
+  }
+
+  .logo-panda img {
+    height: 30px;
+  }
+}

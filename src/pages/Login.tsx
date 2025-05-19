@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../style/login.css";
 import logoPanda from "/logoPanda.svg";
 import logo from "/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ export default function Login() {
         <img src={logoPanda} alt="панда-лого" />
       </div>
 
-      <div className="container">
+      <div className="container1">
         {/* Левая часть — форма */}
         <div className="login-form">
           <div className="form-content">
@@ -68,7 +69,7 @@ export default function Login() {
               <button type="submit" className="login-button">Войти</button>
 
               <p className="register-link">
-                Нет аккаунта? <a href="#">Зарегистрироваться</a>
+                Нет аккаунта? <Link to='/register'>Зарегистрироваться</Link>
               </p>
             </form>
           </div>

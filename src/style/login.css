@@ -30,7 +30,7 @@ html, body {
 }
 
 /* --- Контейнер --- */
-.container {
+.container1 {
   display: flex;
   width: 100%;
   min-height: 100vh;
@@ -43,7 +43,7 @@ html, body {
   flex-direction: column;
   justify-content: center;
   padding: 40px 20px;
-  background-color: #1a1a1a;
+  background-color: #1a1a1a80;
   box-sizing: border-box;
   width: 100%;
 }
