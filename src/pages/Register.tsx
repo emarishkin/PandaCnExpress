@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function Register() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [status, setStatus] = useState("individual");
+  const [status, setStatus] = useState("no");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
@@ -72,7 +72,8 @@ export default function Register() {
                    value={status}
                    onChange={(e) => setStatus(e.target.value)}
                    required
-                >
+                >  
+                   <option value="no">не выбран</option>
                    <option value="individual">Физическое лицо</option>
                    <option value="company">Юридическое лицо</option>
                 </select>
