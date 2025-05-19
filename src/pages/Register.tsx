@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../style/register.css";
 import logoPanda from "/logoPanda.svg";
 import logo from "/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -79,8 +80,8 @@ export default function Register() {
                     Зарегистрироваться
                 </button>
 
-                <p className="login-link">
-                   Уже есть аккаунт? <a href="/auth">Войти</a>
+                <p className="register-link">
+                   Уже есть аккаунт? <Link to='/'>Войти</Link>
                  </p>
             </form>
           </div>
