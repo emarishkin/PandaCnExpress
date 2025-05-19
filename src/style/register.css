@@ -17,7 +17,7 @@
 }
 
 .logo-panda img {
-  height: 40px;
+  height: 60px;
 }
 
 /* === Контейнер формы === */
@@ -35,6 +35,7 @@
   font-size: 1.6rem;
   margin-bottom: 20px;
   text-align: center;
+      margin-top: 100px;
 }
 
 .form-box {
@@ -99,6 +100,6 @@
   }
 
   .logo-panda img {
-    height: 30px;
+    height: 40px;
   }
 }
