@@ -40,7 +40,7 @@
 .form-box {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 9px;
 }
 
 .register-input {
@@ -56,6 +56,16 @@
   outline: none;
   border-color: #21e363;
 }
+
+.checkbox-label {
+    display: flex
+;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-size: 10px;
+}
+
 
 .register-button {
   padding: 12px;

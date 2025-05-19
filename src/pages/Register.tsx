@@ -8,9 +8,15 @@ import { Link } from "react-router-dom";
 
 export default function Register() {
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [status, setStatus] = useState("individual");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [agree, setAgree] = useState(false);
+
   const navigate = useNavigate();
 
   const handleRegister = (e: React.FormEvent) => {
@@ -51,14 +57,53 @@ export default function Register() {
                    onChange={(e) => setName(e.target.value)}
                    required
                 />
+
+                <input
+                   type="text"
+                   placeholder="Фамилия"
+                   className="register-input"
+                   value={surname}
+                   onChange={(e) => setSurname(e.target.value)}
+                   required
+                />
+
+                <select
+                   className="register-input"
+                   value={status}
+                   onChange={(e) => setStatus(e.target.value)}
+                   required
+                >
+                   <option value="individual">Физическое лицо</option>
+                   <option value="company">Юридическое лицо</option>
+                </select>
+
                 <input
                    type="email"
                    placeholder="Email"
                    className="register-input"
-                          value={email}
+                   value={email}
                    onChange={(e) => setEmail(e.target.value)}
                    required
                 />
+
+                <input
+                   type="tel"
+                   placeholder="Телефон"
+                   className="register-input"
+                   value={phone}
+                   onChange={(e) => setPhone(e.target.value)}
+                   required
+                />
+
+                <input
+                   type="text"
+                   placeholder="Страна"
+                   className="register-input"
+                   value={country}
+                   onChange={(e) => setCountry(e.target.value)}
+                   required
+                />
+
                 <input
                    type="password"
                    placeholder="Пароль"
@@ -75,6 +120,15 @@ export default function Register() {
                    onChange={(e) => setConfirm(e.target.value)}
                    required
                 />
+                 
+                <label className="checkbox-label">
+                    <input
+                    type="checkbox"
+                    checked={agree}
+                    onChange={() => setAgree(!agree)}
+                />
+                 Я согласен с <a href="#">политикой конфиденциальности</a>
+                </label>
 
                 <button type="submit" className="register-button">
                     Зарегистрироваться
