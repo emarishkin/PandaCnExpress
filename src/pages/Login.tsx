@@ -4,20 +4,35 @@ import "../style/login.css";
 import logoPanda from "/logoPanda.svg";
 import logo from "/logo.png";
 import { Link } from "react-router-dom";
+import { getMe, login } from "../api/auth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [check, setCheck] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
-    if (email === "test@test.com" && password === "123456") {
+    try {
+      // Вход
+      const res = await login(email, password);
+      const token = res.data.token;
+
+      // Сохраняем токен
+      localStorage.setItem("token", token);
+
+      // Получаем пользователя
+      const user = await getMe();
+      console.log("Пользователь:", user.data);
+
+      // Переход на dashboard
       navigate("/dashboard");
-    } else {
-      alert("Неверный логин или пароль");
+    } catch (err: any) {
+      setError("Неверный email или пароль.");
     }
   };
 
@@ -71,6 +86,8 @@ export default function Login() {
               <p className="register-link">
                 Нет аккаунта? <Link to='/register'>Зарегистрироваться</Link>
               </p>
+
+              {error && <p className="error-message">{error}</p>}
             </form>
           </div>
         </div>

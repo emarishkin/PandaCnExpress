@@ -5,6 +5,7 @@ import "../style/register.css";
 import logoPanda from "/logoPanda.svg";
 import logo from "/logo.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -19,19 +20,37 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleRegister = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    if (password !== confirm) {
-      alert("Пароли не совпадают");
-      return;
-    }
+  if (password !== confirm) {
+    alert("Пароли не совпадают");
+    return;
+  }
 
-    // Тут будет запрос на API
+  if (!agree) {
+    alert("Вы должны согласиться с политикой конфиденциальности");
+    return;
+  }
+
+  try {
+    await axios.post("http://localhost:5187/api/auth/register", {
+      name,
+      surname,
+      email,
+      password,
+      status,
+      phone,
+      country,
+    });
 
     alert("Регистрация успешна!");
     navigate("/auth");
-  };
+  } catch (err: any) {
+    console.error("Ошибка при регистрации:", err.response?.data || err.message);
+    alert("Ошибка при регистрации. Проверьте данные.");
+  }
+};
 
   return (
     <section className="login">
