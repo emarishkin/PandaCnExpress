@@ -1,4 +1,4 @@
-/* === RESET & BASE === */
+
 *,
 *::before,
 *::after {
@@ -19,7 +19,6 @@ body {
   color: #1a1a1a80;
 }
 
-/* === TYPOGRAPHY === */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin-bottom: 0.5em;
@@ -29,10 +28,10 @@ p {
   margin-bottom: 1em;
 }
 
-/* === LAYOUT HELPERS === */
+
 .container {
   width: 100%;
-  max-width: 1200px; /* или 1440px, по желанию */
+  max-width: 1200px; 
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
@@ -58,7 +57,7 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-/* === NAVIGATION === */
+
 nav {
   
   padding: 1rem;
@@ -81,7 +80,7 @@ nav a:hover {
   color: #007bff;
 }
 
-/* === BUTTONS === */
+
 button,
 .btn {
   padding: 0.75rem 1.5rem;
@@ -99,14 +98,13 @@ button:hover,
   background-color: #e64a19;
 }
 
-/* === IMAGES === */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* === FORMS === */
+
 input,
 textarea,
 select {
@@ -121,7 +119,7 @@ label {
   margin-bottom: 0.5rem;
 }
 
-/* === FOOTER === */
+
 footer {
   text-align: center;
   padding: 1rem;
@@ -130,7 +128,7 @@ footer {
   color: #777;
 }
 
-/* === RESPONSIVE === */
+
 @media (max-width: 768px) {
   html {
     font-size: 15px;

@@ -1,0 +1,144 @@
+/* Sider.css */
+.siderSection {
+  background-color: #2c3e50;
+  color: white;
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.container {
+  height: 100%;
+  padding: 20px 0;
+}
+
+.sider-board {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sider-board img {
+  width: 80%;
+  max-width: 180px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+  display: block;
+}
+
+.sider-nuv {
+  flex-grow: 1;
+}
+
+.sider-nuv ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sider-nuv li {
+  margin-bottom: 5px;
+}
+
+.sider-nuv li a {
+  display: block;
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.sider-nuv li a:hover {
+  background-color: #34495e;
+  border-left: 3px solid #3498db;
+  color: #3498db;
+}
+
+.sider-nuv li a.active {
+  background-color: #34495e;
+  border-left: 3px solid #3498db;
+  color: #3498db;
+  font-weight: 500;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .siderSection {
+    width: 70px;
+    overflow: hidden;
+  }
+  
+  .sider-board img {
+    width: 50px;
+    padding: 0 10px;
+  }
+  
+  .sider-nuv li a {
+    padding: 12px 15px;
+    text-align: center;
+  }
+  
+  .sider-nuv li a span {
+    display: none;
+  }
+  
+  .sider-nuv li a::before {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .siderSection {
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    top: auto;
+  }
+  
+  .container {
+    padding: 0;
+  }
+  
+  .sider-board {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .sider-board img {
+    width: 40px;
+    margin: 0 10px 0 20px;
+  }
+  
+  .sider-nuv {
+    flex-grow: 1;
+    overflow-x: auto;
+  }
+  
+  .sider-nuv ul {
+    display: flex;
+  }
+  
+  .sider-nuv li {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .sider-nuv li a {
+    padding: 10px 15px;
+    border-left: none;
+    border-top: 3px solid transparent;
+  }
+  
+  .sider-nuv li a:hover,
+  .sider-nuv li a.active {
+    border-left: none;
+    border-top: 3px solid #3498db;
+  }
+}

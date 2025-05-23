@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5187/api", // Адрес твоего .NET API
+  baseURL: "http://192.168.1.49:5187/api"
 });
 
 API.interceptors.request.use((config) => {
