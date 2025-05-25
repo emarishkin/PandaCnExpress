@@ -1,5 +1,7 @@
 
 
+import Container from "../components/Container/Container";
+import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 import '../style/Dashboard.css'
 
@@ -9,8 +11,10 @@ export default function Dashboard() {
       <Sidebar />
 
       <main className="dashboard-main">
-        {/* Здесь будут Header, Banner, StatusList, AddParcelButton */}
+        <Container>
+        <Header />
         <h1>Добро пожаловать в Panda Express!</h1>
+        </Container>
       </main>
     </div>
   );
