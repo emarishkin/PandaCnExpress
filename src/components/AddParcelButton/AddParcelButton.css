@@ -1,0 +1,32 @@
+.add-parcel-button {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  background-color: #d4002a;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 999;
+  transition: background-color 0.2s ease;
+}
+
+.add-parcel-button:hover {
+  background-color: #b80025;
+}
+
+@media (max-width: 600px) {
+  .add-parcel-button {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 20px;
+    width: 90%;
+    border-radius: 12px;
+    font-size: 14px;
+    padding: 12px;
+  }
+}

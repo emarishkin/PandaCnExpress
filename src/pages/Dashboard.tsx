@@ -5,6 +5,7 @@ import { Banner } from "../components/Banner/Banner";
 import { StatusList } from "../components/StatusList/StatusList";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Container } from "../components/Container/Container";
+import { AddParcelButton } from "../components/AddParcelButton/AddParcelButton";
 
 export const Dashboard:FC = () => {
   return (
@@ -16,6 +17,7 @@ export const Dashboard:FC = () => {
         <Header />
         <Banner />
         <StatusList />
+        <AddParcelButton />
         </Container>
       </main>
     </div>
