@@ -1,27 +1,38 @@
-
-.layout{
-    max-width: 100%;
-    height: 100vh;
-    overflow: 'hidden'
+/* Основной контейнер */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f7f7f8;
+  overflow: hidden;
 }
 
-.sider{
-  text-align: center;
-  line-height: 120px;
-  color: #fff;
-  background-color: #1eb101;
+/* Правая часть (контент) */
+.dashboard-main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
 }
 
-.content{
-  text-align: center;
-  min-height: 120;
-  line-height: 120px;
-  color: #fff;
-  background-color:#a8f099 ;
+/* Пример базового заголовка */
+.dashboard-main h1 {
+  font-size: 24px;
+  color: #333;
 }
 
-.footer{
-    text-align: center;
-  color: #fff;
-  background-color: #1eb101;
+/* ========== Адаптив ========== */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .dashboard-main {
+    padding: 15px;
+  }
 }

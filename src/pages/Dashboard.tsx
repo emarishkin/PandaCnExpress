@@ -1,28 +1,18 @@
 
-// export default function Dashboard() {
-//   return <h1 style={{ padding: "2rem" }}>Добро пожаловать в Dashboard!</h1>;
-// }
 
-import React, { type FC } from 'react';
-import { Flex, Layout } from 'antd';
-import '../style/dashboard.css'
-import { Sider } from '../components/Sider';
+import Sidebar from "../components/Sidebar/Sidebar";
+import '../style/Dashboard.css'
 
- export const Dashboard:FC = () => {
+export default function Dashboard() {
   return (
-     <Flex gap="middle" wrap>
-    <Layout className='layout' >
-      <Layout.Sider className='sider' width="15%" >
-        <Sider />
-      </Layout.Sider>
-      <Layout>
-        <Layout.Header className='header' >Header</Layout.Header>
-        <Layout.Content className='content'>Content</Layout.Content>
-        <Layout.Footer className='footer'>Footer</Layout.Footer>
-      </Layout>
-    </Layout>
-  </Flex>
-  )
-}
+    <div className="dashboard-container">
+      <Sidebar />
 
+      <main className="dashboard-main">
+        {/* Здесь будут Header, Banner, StatusList, AddParcelButton */}
+        <h1>Добро пожаловать в Panda Express!</h1>
+      </main>
+    </div>
+  );
+}
 

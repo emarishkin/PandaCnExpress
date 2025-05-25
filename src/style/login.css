@@ -5,14 +5,15 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: system-ui, sans-serif;
-  background-color: #111;
-  color: #fff;
+  
 }
 
 .login {
   display: flex;
   min-height: 100vh;
   position: relative;
+  background-color: #111;
+  color: #fff;
 }
 
 .logo-panda {
