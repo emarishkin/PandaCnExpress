@@ -1,6 +1,7 @@
+import type { FC } from "react";
 import "../Sidebar/Sidebar.css";
 
-export default function Sidebar() {
+export const Sidebar:FC = () => {
   return (
     <aside className="sidebar">
       <div className="logo">PANDA EXPRESS</div>

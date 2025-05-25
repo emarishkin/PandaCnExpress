@@ -1,8 +1,8 @@
-import  { useEffect, useState } from "react";
+import  { useEffect, useState, type FC } from "react";
 import axios from "axios";
 import '../Header/Header.css'
 
-export default function Header() {
+export const Header:FC = ()  => {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {

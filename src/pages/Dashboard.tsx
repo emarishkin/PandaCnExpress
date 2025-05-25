@@ -1,11 +1,12 @@
-
-
-import Container from "../components/Container/Container";
-import Header from "../components/Header/Header";
-import Sidebar from "../components/Sidebar/Sidebar";
+import type { FC } from "react";
 import '../style/Dashboard.css'
+import { Header } from "../components/Header/Header";
+import { Banner } from "../components/Banner/Banner";
+import { StatusList } from "../components/StatusList/StatusList";
+import { Sidebar } from "../components/Sidebar/Sidebar";
+import { Container } from "../components/Container/Container";
 
-export default function Dashboard() {
+export const Dashboard:FC = () => {
   return (
     <div className="dashboard-container">
       <Sidebar />
@@ -13,7 +14,8 @@ export default function Dashboard() {
       <main className="dashboard-main">
         <Container>
         <Header />
-        <h1>Добро пожаловать в Panda Express!</h1>
+        <Banner />
+        <StatusList />
         </Container>
       </main>
     </div>
