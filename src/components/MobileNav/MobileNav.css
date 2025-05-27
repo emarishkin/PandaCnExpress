@@ -1,0 +1,36 @@
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px;
+  flex-grow: 1;
+}
+
+.nav-btn.active {
+  color: #d4002a;
+  font-weight: bold;
+}
+
+/* Показываем только на мобилке */
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex;
+  }
+}
