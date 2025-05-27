@@ -7,16 +7,12 @@ import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Container } from "../components/Container/Container";
 import { AddParcelButton } from "../components/AddParcelButton/AddParcelButton";
 import { MobileNav } from "../components/MobileNav/MobileNav";
-<<<<<<< HEAD
 
-=======
-<i></i>
->>>>>>> 993bbb97e6b3432a08e523a0cefbac40f6d3c963
 export const Dashboard:FC = () => {
   return (
     <div className="dashboard-container">
       <Sidebar />
-
+<p></p>
       <main className="dashboard-main">
         <Container>
         <Header />
