@@ -1,6 +1,7 @@
 import  { useEffect, useState, type FC } from "react";
 import axios from "axios";
 import '../Header/Header.css'
+import avatar from '/avatar.svg'
 
 export const Header:FC = ()  => {
   const [user, setUser] = useState<any>(null);
@@ -28,7 +29,7 @@ export const Header:FC = ()  => {
         {user && (
           <div className="header-user">
             <span>{user.name} {user.surname}</span>
-            <img src="/avatar.png" alt="avatar" className="avatar" />
+            <img src={avatar} alt="avatar" className="avatar" />
           </div>
         )}
       </div>

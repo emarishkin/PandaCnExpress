@@ -6,6 +6,7 @@ import { StatusList } from "../components/StatusList/StatusList";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Container } from "../components/Container/Container";
 import { AddParcelButton } from "../components/AddParcelButton/AddParcelButton";
+import { MobileNav } from "../components/MobileNav/MobileNav";
 
 export const Dashboard:FC = () => {
   return (
@@ -18,6 +19,7 @@ export const Dashboard:FC = () => {
         <Banner />
         <StatusList />
         <AddParcelButton />
+        <MobileNav />
         </Container>
       </main>
     </div>
