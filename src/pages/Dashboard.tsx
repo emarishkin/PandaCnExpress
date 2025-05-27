@@ -7,7 +7,7 @@ import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Container } from "../components/Container/Container";
 import { AddParcelButton } from "../components/AddParcelButton/AddParcelButton";
 import { MobileNav } from "../components/MobileNav/MobileNav";
-
+<i></i>
 export const Dashboard:FC = () => {
   return (
     <div className="dashboard-container">
