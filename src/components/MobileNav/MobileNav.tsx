@@ -1,14 +1,32 @@
-import  { type FC } from "react";
-import "./MobileNav.css";
 
-export const MobileNav:FC = () => {
+import '../MobileNav/MobileNav.css'
+import { useLocation, useNavigate } from "react-router-dom";
+import { FiHome, FiMapPin, FiUsers, FiCreditCard, FiSettings } from "react-icons/fi";
+
+export default function MobileNav() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const menu = [
+    { label: "Главная", icon: <FiHome />, path: "/dashboard" },
+    { label: "Адреса", icon: <FiMapPin />, path: "/addresses" },
+    { label: "Получатели", icon: <FiUsers />, path: "/receivers" },
+    { label: "Финансы", icon: <FiCreditCard />, path: "/finance" },
+    { label: "Настройки", icon: <FiSettings />, path: "/settings" },
+  ];
+
   return (
     <nav className="mobile-nav">
-      <button className="nav-btn active">Главная</button>
-      <button className="nav-btn">Адреса</button>
-      <button className="nav-btn">Получатели</button>
-      <button className="nav-btn">Финансы</button>
-      <button className="nav-btn">Настройки</button>
+      {menu.map((item) => (
+        <button
+          key={item.path}
+          className={`nav-btn ${location.pathname === item.path ? "active" : ""}`}
+          onClick={() => navigate(item.path)}
+        >
+          {item.icon}
+          <span>{item.label}</span>
+        </button>
+      ))}
     </nav>
   );
 }

@@ -1,10 +1,5 @@
 /* Основной контейнер */
-.dashboard-container {
-  display: flex;
-  height: 100vh;
-  background-color: #f7f7f8;
-  overflow: hidden;
-}
+
 
 /* Правая часть (контент) */
 .dashboard-main {
@@ -36,4 +31,16 @@
  .dashboard-main {
     padding-left: 20px;
   }
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f7f7f8;
+  overflow: hidden; 
+  max-width: none;
+  margin: 0 0 auto 0;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }

@@ -4,23 +4,23 @@ import { Header } from "../components/Header/Header";
 import { Banner } from "../components/Banner/Banner";
 import { StatusList } from "../components/StatusList/StatusList";
 import { Sidebar } from "../components/Sidebar/Sidebar";
-import { Container } from "../components/Container/Container";
+// import { Container } from "../components/Container/Container";
 import { AddParcelButton } from "../components/AddParcelButton/AddParcelButton";
-import { MobileNav } from "../components/MobileNav/MobileNav";
+import MobileNav from "../components/MobileNav/MobileNav";
+
 
 export const Dashboard:FC = () => {
   return (
     <div className="dashboard-container">
       <Sidebar />
-<p></p>
       <main className="dashboard-main">
-        <Container>
+        {/* <Container> */}
         <Header />
         <Banner />
         <StatusList />
         <AddParcelButton />
         <MobileNav />
-        </Container>
+        {/* </Container> */}
       </main>
     </div>
   );
