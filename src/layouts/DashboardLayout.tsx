@@ -5,6 +5,7 @@ import '../style/Dashboard.css'
 import { Container } from "../components/Container/Container";
 import { Header } from "../components/Header/Header";
 import { Banner } from "../components/Banner/Banner";
+import MobileNav from "../components/MobileNav/MobileNav";
 
 type Props = {
   children: React.ReactNode;
@@ -21,11 +22,13 @@ export default function DashboardLayout({ children, statusList }: Props) {
           <Banner />
 
           <div className="dashboard-content">
-            {statusList && <div className="dashboard-status">{statusList}</div>}
-            <div className="dashboard-children">{children}</div>
-          </div>
+  {statusList && <div className="dashboard-status">{statusList}</div>}
+  <div className="dashboard-children">{children}</div>
+</div>
+
         </Container>
       </main>
+      <MobileNav />
     </div>
   );
 }

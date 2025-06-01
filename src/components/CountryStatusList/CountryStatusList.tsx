@@ -19,7 +19,7 @@ export default function CountryStatusList({ countries, selected, onSelect }: Pro
       {countries.map((country) => (
         <div
           key={country.code}
-          className={`country-box ${selected === country.code ? "active" : ""}`}
+          className={`country-box ${selected === country.code ? "active mobile-expand" : ""}`}
           onClick={() => onSelect(country.code)}
         >
           <span>{country.name}</span>

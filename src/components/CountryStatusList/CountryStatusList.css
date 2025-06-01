@@ -1,38 +1,61 @@
 .country-status-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: fit-content;
-  padding-right: 20px;
+  gap: 16px;
+  width: 200px;
+  padding-right: 24px;
   border-right: 1px solid #ddd;
 }
 
 .country-box {
-  background: #f3f3f3;
-  border-radius: 8px;
-  padding: 12px 16px;
-  cursor: pointer;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 14px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 180px;
-  transition: background 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.2s, border 0.2s;
 }
 
 .country-box:hover {
-  background: #eaeaea;
+  background: #f0f0f0;
 }
 
 .country-box.active {
   background: #fce4ec;
+  border-color: #d4002a33;
   color: #d4002a;
   font-weight: bold;
 }
 
 .badge {
   background: #d4002a;
-  color: #fff;
+  color: white;
   border-radius: 12px;
   padding: 2px 8px;
   font-size: 12px;
+}
+
+/* ✅ Мобилка: список стран в колонку на весь экран */
+@media (max-width: 768px) {
+  .country-status-list {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+
+  .country-box {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .country-box.active {
+    background: #fff3f6;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
