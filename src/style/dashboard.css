@@ -1,35 +1,16 @@
-/* Основной контейнер */
+.dashboard-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
 
+.dashboard-status {
+  flex-shrink: 0;
+}
 
-/* Правая часть (контент) */
-.dashboard-main {
+.dashboard-children {
   flex: 1;
-  padding: 30px;
-  padding-left: 250px; /* <== фикс для десктопа */
-  overflow-y: auto;
+  min-width: 300px;
 }
-
-/* Пример базового заголовка */
-.dashboard-main h1 {
-  font-size: 24px;
-  color: #333;
-}
-
-/* ========== Адаптив ========== */
-@media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-
- .dashboard-main {
-    padding-left: 20px;
-  }
-}
-

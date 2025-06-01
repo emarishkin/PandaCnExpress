@@ -1,29 +1,13 @@
-import type { FC } from "react";
-import '../style/Dashboard.css'
-import { Header } from "../components/Header/Header";
-import { Banner } from "../components/Banner/Banner";
 import { StatusList } from "../components/StatusList/StatusList";
-
-// import { Container } from "../components/Container/Container";
-import { AddParcelButton } from "../components/AddParcelButton/AddParcelButton";
-import MobileNav from "../components/MobileNav/MobileNav";
-import Sidebar from "../components/Sidebar/Sidebar";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 
-export const Dashboard:FC = () => {
+export default function Dashboard() {
   return (
-    <div className="dashboard-container">
-      <Sidebar />
-      <main className="dashboard-main">
-        {/* <Container> */}
-        <Header />
-        <Banner />
-        <StatusList />
-        <AddParcelButton />
-        <MobileNav />
-        {/* </Container> */}
-      </main>
-    </div>
+    <DashboardLayout statusList={<StatusList />}>
+      <h2>Добро пожаловать!</h2>
+    </DashboardLayout>
   );
 }
+
 

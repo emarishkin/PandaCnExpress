@@ -1,0 +1,38 @@
+.country-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: fit-content;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.country-box {
+  background: #f3f3f3;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 180px;
+  transition: background 0.2s ease;
+}
+
+.country-box:hover {
+  background: #eaeaea;
+}
+
+.country-box.active {
+  background: #fce4ec;
+  color: #d4002a;
+  font-weight: bold;
+}
+
+.badge {
+  background: #d4002a;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
