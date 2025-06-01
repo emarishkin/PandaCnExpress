@@ -1,8 +1,26 @@
-import { useState, type FC } from "react";
-import "./Sidebar.css";
+import  { useState } from "react";
+import '../Sidebar/Sidebar.css'
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  FiHome,
+  FiMapPin,
+  FiUsers,
+  FiCreditCard,
+  FiSettings,
+} from "react-icons/fi";
 
-export const Sidebar:FC = () => {
+export default function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const menu = [
+    { label: "Главная", icon: <FiHome />, path: "/dashboard" },
+    { label: "Адреса", icon: <FiMapPin />, path: "/addresses" },
+    { label: "Получатели", icon: <FiUsers />, path: "/receivers" },
+    { label: "Финансы", icon: <FiCreditCard />, path: "/finance" },
+    { label: "Настройки", icon: <FiSettings />, path: "/settings" },
+  ];
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -11,7 +29,11 @@ export const Sidebar:FC = () => {
       <div className="sidebar-header">
         <div className="logo">PANDA EXPRESS</div>
 
-        <button className={`menu-toggle ${menuOpen ? "open" : ""}`} onClick={toggleMenu} aria-label="Открыть меню">
+        <button
+          className={`menu-toggle ${menuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+          aria-label="Меню"
+        >
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
@@ -20,17 +42,24 @@ export const Sidebar:FC = () => {
 
       <nav className={`nav ${menuOpen ? "open" : ""}`}>
         <ul>
-          <li className="active">Главная</li>
-          <li>Мои адреса</li>
-          <li>Получатели</li>
-          <li>Финансы</li>
-          <li>Настройки</li>
+          {menu.map((item) => (
+            <li
+              key={item.path}
+              className={location.pathname === item.path ? "active" : ""}
+              onClick={() => navigate(item.path)}
+            >
+              <span className="menu-icon">{item.icon}</span>
+              <span className="menu-label">{item.label}</span>
+            </li>
+          ))}
         </ul>
       </nav>
 
       <div className="user-id-box">
-        <p><strong>Ваш ID: B-4437</strong></p>
-        <p className="note">Указывайте идентификатор при заказе</p>
+        <p>
+          <strong>Ваш ID: B-4437</strong>
+        </p>
+        <p className="note">Указывайте ID при заказе</p>
       </div>
     </aside>
   );
