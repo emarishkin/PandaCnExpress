@@ -60,6 +60,23 @@
   font-size: 14px;
 }
 
+.delete-address {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ffeded;
+  color: #d4002a;
+  border: none;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  line-height: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+
 .user-form h4 {
   margin: 16px 0 10px;
   font-size: 16px;

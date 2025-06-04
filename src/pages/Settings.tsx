@@ -29,108 +29,167 @@ export default function Settings() {
   );
 }
 
-function UserInfoForm() {
-  const [addresses, setAddresses] = useState([
-    {
-      country: "",
-      region: "",
-      city: "",
-      street: "",
-      house: "",
-      zip: "",
-      landmark: "",
-      apartment: "",
-      isPrimary: true,
-    },
-  ]);
-
-  const handleChange = (index: number, field: string, value: string | boolean) => {
-    const updated = [...addresses];
-    updated[index] = { ...updated[index], [field]: value };
-    setAddresses(updated);
-  };
-
-  const addAddress = () => {
-    setAddresses([
-      ...addresses,
+ function UserInfoForm() {
+  const initialState = {
+    name: "",
+    phone: "",
+    passport: "",
+    email: "",
+    addresses: [
       {
         country: "",
         region: "",
         city: "",
         street: "",
         house: "",
+        apartment: "",
         zip: "",
         landmark: "",
-        apartment: "",
-        isPrimary: false,
+        isPrimary: true,
       },
-    ]);
+    ],
+  };
+
+  const [form, setForm] = useState(initialState);
+
+  const handleMainChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleAddressChange = (index: number, field: string, value: string | boolean) => {
+    const updated = [...form.addresses];
+    updated[index] = { ...updated[index], [field]: value };
+    setForm({ ...form, addresses: updated });
+  };
+
+  const addAddress = () => {
+    setForm({
+      ...form,
+      addresses: [
+        ...form.addresses,
+        {
+          country: "",
+          region: "",
+          city: "",
+          street: "",
+          house: "",
+          apartment: "",
+          zip: "",
+          landmark: "",
+          isPrimary: false,
+        },
+      ],
+    });
+  };
+
+  const removeAddress = (index: number) => {
+    const updated = [...form.addresses];
+    updated.splice(index, 1);
+    setForm({ ...form, addresses: updated });
+  };
+
+  const resetForm = () => {
+    setForm(initialState);
+  };
+
+  const saveForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Сохранённые данные:", form);
+    alert("Данные сохранены (в консоли)");
   };
 
   return (
-    <form className="user-form">
+    <form className="user-form" onSubmit={saveForm}>
       <h3>Ваши данные</h3>
-
       <div className="form-grid">
-        <input placeholder="Ф.И.О" />
-        <input placeholder="Телефон" />
-        <input placeholder="Серия и номер паспорта" />
-        <input placeholder="Электронная почта" />
+        <input
+          name="name"
+          placeholder="Ф.И.О"
+          value={form.name}
+          onChange={handleMainChange}
+        />
+        <input
+          name="phone"
+          placeholder="Телефон"
+          value={form.phone}
+          onChange={handleMainChange}
+        />
+        <input
+          name="passport"
+          placeholder="Серия и номер паспорта"
+          value={form.passport}
+          onChange={handleMainChange}
+        />
+        <input
+          name="email"
+          placeholder="Электронная почта"
+          value={form.email}
+          onChange={handleMainChange}
+        />
       </div>
 
-      <h4 style={{ marginTop: "20px" }}>Адреса</h4>
-
-      {addresses.map((addr, index) => (
-        <div key={index} className="form-grid">
+      <h4>Адреса</h4>
+      {form.addresses.map((addr, index) => (
+        <div key={index} className="form-grid" style={{ position: "relative" }}>
           <input
             placeholder="Страна"
             value={addr.country}
-            onChange={(e) => handleChange(index, "country", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "country", e.target.value)}
           />
           <input
             placeholder="Область (регион)"
             value={addr.region}
-            onChange={(e) => handleChange(index, "region", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "region", e.target.value)}
           />
           <input
             placeholder="Город"
             value={addr.city}
-            onChange={(e) => handleChange(index, "city", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "city", e.target.value)}
           />
           <input
             placeholder="Улица"
             value={addr.street}
-            onChange={(e) => handleChange(index, "street", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "street", e.target.value)}
           />
           <input
             placeholder="Дом"
             value={addr.house}
-            onChange={(e) => handleChange(index, "house", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "house", e.target.value)}
           />
           <input
             placeholder="Квартира"
             value={addr.apartment}
-            onChange={(e) => handleChange(index, "apartment", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "apartment", e.target.value)}
           />
           <input
             placeholder="Ориентир"
             value={addr.landmark}
-            onChange={(e) => handleChange(index, "landmark", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "landmark", e.target.value)}
           />
           <input
             placeholder="ZIP код (индекс)"
             value={addr.zip}
-            onChange={(e) => handleChange(index, "zip", e.target.value)}
+            onChange={(e) => handleAddressChange(index, "zip", e.target.value)}
           />
 
           <label className="switcher">
             <input
               type="checkbox"
               checked={addr.isPrimary}
-              onChange={(e) => handleChange(index, "isPrimary", e.target.checked)}
+              onChange={(e) => handleAddressChange(index, "isPrimary", e.target.checked)}
             />
             Основной
           </label>
+
+          {index > 0 && (
+            <button
+              type="button"
+              className="delete-address"
+              onClick={() => removeAddress(index)}
+            >
+              ❌
+            </button>
+          )}
         </div>
       ))}
 
@@ -139,7 +198,7 @@ function UserInfoForm() {
       </button>
 
       <div className="action-buttons">
-        <button type="reset" className="cancel">
+        <button type="button" className="cancel" onClick={resetForm}>
           Сбросить
         </button>
         <button type="submit" className="save">
