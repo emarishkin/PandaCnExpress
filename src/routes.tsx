@@ -14,9 +14,10 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/auth" element={<Login />} />
-        <Route path="/register" element={<Register/>} />
+        {/* <Route path="/" element={<Login />} />
+        <Route path="/auth" element={<Login />} /> */}
+        {/* <Route path="/register" element={<Register/>} /> */}
+        <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/addresses" element={<Addresses />} />
         <Route path="/receivers" element={<Receivers/>} />
