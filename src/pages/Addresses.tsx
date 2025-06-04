@@ -1,15 +1,16 @@
-import { useState } from "react";
+import  { useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import CountryStatusList from "../components/CountryStatusList/CountryStatusList";
+import AddAddressModal from "../components/AddAddressModal/AddAddressModal";
 import '../style/Addresses.css'
 
-const countries = [
+const initialCountries = [
   { name: "Китай", code: "cn", count: 1 },
   { name: "США", code: "us", count: 2 },
   { name: "Турция", code: "tr", count: 0 },
 ];
 
-const addresses = [
+const initialAddresses = [
   {
     id: 1,
     country: "cn",
@@ -51,33 +52,73 @@ const addresses = [
 
 export default function Addresses() {
   const [selectedCountry, setSelectedCountry] = useState("us");
+  const [addressList, setAddressList] = useState(initialAddresses);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const filtered = addresses.filter((a) => a.country === selectedCountry);
+  const filtered = addressList.filter((a) => a.country === selectedCountry);
 
   return (
-    <DashboardLayout
-      statusList={
-        <CountryStatusList
-          countries={countries}
-          selected={selectedCountry}
-          onSelect={setSelectedCountry}
+    <>
+      {modalOpen && (
+        <AddAddressModal
+          onAdd={(newAddr) => setAddressList([...addressList, newAddr])}
+          onClose={() => setModalOpen(false)}
         />
-      }
-    >
-      <h2 className="addresses-title">Адреса: {selectedCountry.toUpperCase()}</h2>
-      <div className="address-list">
-        {filtered.map((addr) => (
-          <div key={addr.id} className="address-card">
-            <h3>{addr.title}</h3>
-            <ul>
-              {addr.lines.map((line, idx) => (
-                <li key={idx}>{line}</li>
+      )}
+
+      <DashboardLayout
+        statusList={
+          <div className="dashboard-status">
+            <CountryStatusList
+              countries={initialCountries.map((c) => ({
+                ...c,
+                count: addressList.filter((a) => a.country === c.code).length,
+              }))}
+              selected={selectedCountry}
+              onSelect={setSelectedCountry}
+            />
+
+            {/* Мобильные карточки */}
+            <div className="mobile-address-list">
+              {filtered.map((addr) => (
+                <div key={addr.id} className="address-card">
+                  <h3>{addr.title}</h3>
+                  <ul>
+                    {addr.lines.map((line, idx) => (
+                      <li key={idx}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
-        ))}
-        {filtered.length === 0 && <p>Нет адресов для этой страны.</p>}
-      </div>
-    </DashboardLayout>
+        }
+      >
+        {/* Кнопка добавления */}
+        <button onClick={() => setModalOpen(true)} className="add-address-button">
+          + Добавить адрес
+        </button>
+
+        {/* Десктопный список */}
+        <div className="desktop-address-list">
+          <h2 className="addresses-title">
+            Адреса: {selectedCountry.toUpperCase()}
+          </h2>
+          <div className="address-list">
+            {filtered.map((addr) => (
+              <div key={addr.id} className="address-card">
+                <h3>{addr.title}</h3>
+                <ul>
+                  {addr.lines.map((line, idx) => (
+                    <li key={idx}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            {filtered.length === 0 && <p>Нет адресов для этой страны.</p>}
+          </div>
+        </div>
+      </DashboardLayout>
+    </>
   );
 }
