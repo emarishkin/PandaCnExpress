@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Addresses from "./pages/Addresses";
 import Dashboard from "./pages/Dashboard";
 import Receivers from "./pages/Receivers";
+import Finances from "./pages/Finances";
 
 
 
@@ -18,6 +19,7 @@ export default function AppRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/addresses" element={<Addresses />} />
         <Route path="/receivers" element={<Receivers/>} />
+        <Route path="/finance" element={<Finances />} />
       </Routes>
     </BrowserRouter>
   );
