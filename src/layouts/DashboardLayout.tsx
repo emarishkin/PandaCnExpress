@@ -1,7 +1,5 @@
 import React from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
-
-import '../style/Dashboard.css'
 import { Container } from "../components/Container/Container";
 import { Header } from "../components/Header/Header";
 import { Banner } from "../components/Banner/Banner";
@@ -9,7 +7,7 @@ import MobileNav from "../components/MobileNav/MobileNav";
 
 type Props = {
   children: React.ReactNode;
-  statusList?: React.ReactNode; // 
+  statusList?: React.ReactNode;  
 };
 
 export default function DashboardLayout({ children, statusList }: Props) {
