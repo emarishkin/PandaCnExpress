@@ -8,7 +8,7 @@ import Receivers from "./pages/Receivers";
 import Finances from "./pages/Finances";
 import Settings from "./pages/Settings";
 
-
+1
 
 export default function AppRoutes() {
   return (
