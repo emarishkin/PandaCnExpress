@@ -1,6 +1,6 @@
 import { StatusList } from "../components/StatusList/StatusList";
 import DashboardLayout from "../layouts/DashboardLayout";
-import '../style/Dashboard.css'
+
 
 
 export default function Dashboard() {
