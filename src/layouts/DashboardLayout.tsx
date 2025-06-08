@@ -4,7 +4,7 @@ import { Container } from "../components/Container/Container";
 import { Header } from "../components/Header/Header";
 import { Banner } from "../components/Banner/Banner";
 import MobileNav from "../components/MobileNav/MobileNav";
-import '../style/Dashboard.css'
+
 
 type Props = {
   children: React.ReactNode;
