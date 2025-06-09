@@ -1,61 +1,56 @@
 .country-status-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 200px;
-  padding-right: 24px;
-  border-right: 1px solid #ddd;
+  gap: 10px;
 }
 
 .country-box {
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 14px 18px;
+  padding: 15px;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: background 0.2s, border 0.2s;
+  font-size: 20px;
 }
 
 .country-box:hover {
-  background: #f0f0f0;
+  border-color: #d4002a;
 }
 
 .country-box.active {
-  background: #fce4ec;
-  border-color: #d4002a33;
+  background: #fff0f3;
+  border-color: #d4002a;
   color: #d4002a;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .badge {
   background: #d4002a;
   color: white;
   border-radius: 12px;
-  padding: 2px 8px;
+  padding: 3px 8px;
   font-size: 12px;
+  font-weight: 500;
 }
 
-/* ✅ Мобилка: список стран в колонку на весь экран */
 @media (max-width: 768px) {
   .country-status-list {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    padding: 0;
-    border: none;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
   }
-
+  
+  .country-status-list::-webkit-scrollbar {
+    display: none;
+  }
+  
   .country-box {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .country-box.active {
-    background: #fff3f6;
-    flex-direction: column;
-    align-items: flex-start;
+    min-width: 120px;
+    white-space: nowrap;
   }
 }

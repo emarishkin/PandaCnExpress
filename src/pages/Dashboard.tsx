@@ -1,4 +1,5 @@
-import { StatusList } from "../components/StatusList/StatusList";
+
+import StatusList from "../components/StatusList/StatusList";
 import DashboardLayout from "../layouts/DashboardLayout";
 
 
@@ -6,7 +7,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 export default function Dashboard() {
   return (
     <DashboardLayout statusList={<StatusList />}>
-      <h2>Добро пожаловать!</h2>
+      <h2></h2>
     </DashboardLayout>
   );
 }

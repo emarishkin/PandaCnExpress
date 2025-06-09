@@ -11,9 +11,10 @@
 }
 
 .banner-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
 }
 
 .banner-icon {
@@ -40,7 +41,6 @@
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .banner-button:hover {

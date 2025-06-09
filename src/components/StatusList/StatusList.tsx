@@ -1,28 +1,41 @@
-import type { FC } from 'react';
-import '../StatusList/StatusList.css'
+import { useState } from "react";
+import "./StatusList.css";
+import DeliveryModal from "../DeliveryModal/DeliveryModal";
 
-const statuses = [
-  { label: "Новые заявки", count: 0, color: "#e3f2fd" },
-  { label: "На складе", count: 0, color: "#fff3e0" },
-  { label: "В пути", count: 0, color: "#ede7f6" },
-  { label: "Готовится к отправке", count: 0, color: "#e8f5e9" },
-  { label: "Готов к выдаче", count: 0, color: "#f3e5f5" },
-  { label: "Доставлена", count: 0, color: "#fce4ec" },
-];
+export default function StatusList() {
+  const [showModal, setShowModal] = useState(false);
+  const [activeStatus, setActiveStatus] = useState("Новые заявки");
 
-export const StatusList:FC = () => {
+  const statuses = [
+    "Новые заявки",
+    "На складе",
+    "Готовится к отправке",
+    "В пути",
+    "Готов к выдаче",
+    "Доставлено"
+  ];
+
   return (
-    <div className="status-list">
-      {statuses.map((status, index) => (
-        <div
-          key={index}
-          className="status-card"
-          style={{ backgroundColor: status.color }}
-        >
-          <div className="status-count">{status.count}</div>
-          <div className="status-label">{status.label}</div>
-        </div>
-      ))}
+    <div className="status-section">
+      <div className="status-header">
+        <button className="add-package-btn" onClick={() => setShowModal(true)}>
+          + Добавить посылку
+        </button>
+      </div>
+
+      <div className="status-list">
+        {statuses.map((status) => (
+          <div 
+            key={status}
+            className={`status-item ${activeStatus === status ? 'active' : ''}`}
+            onClick={() => setActiveStatus(status)}
+          >
+            {status}
+          </div>
+        ))}
+      </div>
+
+      {showModal && <DeliveryModal onClose={() => setShowModal(false)} />}
     </div>
   );
 }

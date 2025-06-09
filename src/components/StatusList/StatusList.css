@@ -1,49 +1,72 @@
+.status-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.add-package-btn {
+  background: #d4002a;
+  color: #fff;
+  padding: 16px 34px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: auto; /* This pushes the button to the right */
+}
+
 .status-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
   margin-top: 20px;
-
-
   width: fit-content;
-  padding-right: 20px;
-
- 
+  padding-right: 73px;
   border-right: 1px solid #ddd;
 }
 
-
-.status-card {
-  width: 100px;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.06);
-  text-align: center;
-  transition: transform 0.2s ease;
+.status-item {
+    background: #f5f6fa;
+    padding: 25px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 100%;
+    font-size: 20px;
 }
 
-.status-card:hover {
-  transform: translateY(-2px);
+.status-item.active {
+  border: 2px solid #d4002a;
+  background: #fff;
 }
 
-.status-count {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-}
-
-.status-label {
-  font-size: 14px;
-  color: #555;
-  margin-top: 8px;
-}
-
-/* Мобилка */
+/* Mobile styles */
 @media (max-width: 480px) {
+  .status-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .add-package-btn {
+    width: 100%;
+    margin-left: 0;
+  }
+  
   .status-count {
     font-size: 22px;
   }
+  
   .status-label {
     font-size: 12px;
   }

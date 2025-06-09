@@ -5,14 +5,14 @@ import Dashboard from "./pages/Dashboard";
 import Receivers from "./pages/Receivers";
 import Finances from "./pages/Finances";
 import Settings from "./pages/Settings";
+import Home from "./components/Home/Home";
 
-1
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-       
+        <Route path="/" element={<Home />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/addresses" element={<Addresses />} />
