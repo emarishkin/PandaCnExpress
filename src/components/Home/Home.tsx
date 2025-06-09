@@ -15,15 +15,6 @@ export default function Home() {
           + Добавить посылку
         </button>
       </div>
-
-      <div className="referral-box">
-        <p>
-          Поделитесь реферальной ссылкой для регистрации с друзьями и знакомыми.
-          За каждый успешный заказ вы получаете бонус на баланс.
-        </p>
-        <button className="invite-btn">Поделиться ➜</button>
-      </div>
-
       {showModal && <DeliveryModal onClose={() => setShowModal(false)} />}
     </DashboardLayout>
   );
