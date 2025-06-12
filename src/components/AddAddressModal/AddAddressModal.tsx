@@ -5,7 +5,8 @@ const COUNTRIES = [
   { code: "us", name: "США" },
   { code: "cn", name: "Китай" },
   { code: "tr", name: "Турция" },
-  { code: "kr", name: "Южная Корея" }
+  { code: "kr", name: "Южная Корея" },
+  { code: "it", name: "Италия" }
 ];
 
 type Props = {
@@ -22,8 +23,8 @@ export default function AddAddressModal({ onAdd, onClose }: Props) {
     country: "us",
     city: "",
     phone: "",
-    additionalPhone: "",
-    instructions: ""
+    description: "",
+    workingHours: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -37,16 +38,15 @@ export default function AddAddressModal({ onAdd, onClose }: Props) {
       id: Date.now(),
       country: form.country,
       title: `Ваш адрес в ${COUNTRIES.find(c => c.code === form.country)?.name} ${form.city}`,
-      lines: [
-        `Фамилия: ${form.lastName}`,
-        `Улица: ${form.street}`,
-        `Почтовый индекс: ${form.zipCode}`,
-        `Страна: ${COUNTRIES.find(c => c.code === form.country)?.name}`,
-        `Город: ${form.city}`,
-        `Телефон: ${form.phone}`,
-        ...(form.additionalPhone ? [`Телефон: ${form.additionalPhone}`] : []),
-        ...(form.instructions ? [`Инструкции: ${form.instructions}`] : [])
-      ].filter(Boolean)
+      description: form.description || "Введите этот адрес как адрес доставки при совершении онлайн покупок.",
+      firstName: form.firstName,
+      lastName: form.lastName,
+      street: form.street,
+      zipCode: form.zipCode,
+      countryName: COUNTRIES.find(c => c.code === form.country)?.name || "",
+      city: form.city,
+      phone: form.phone,
+      workingHours: form.workingHours
     };
     onAdd(newAddress);
     onClose();
@@ -142,22 +142,23 @@ export default function AddAddressModal({ onAdd, onClose }: Props) {
           </div>
 
           <div className="form-group">
-            <label>Дополнительный телефон</label>
-            <input
-              type="tel"
-              name="additionalPhone"
-              value={form.additionalPhone}
+            <label>Описание адреса</label>
+            <textarea
+              name="description"
+              value={form.description}
               onChange={handleChange}
+              rows={3}
             />
           </div>
 
           <div className="form-group">
-            <label>Инструкции для курьера</label>
-            <textarea
-              name="instructions"
-              value={form.instructions}
+            <label>Время приема посылок</label>
+            <input
+              type="text"
+              name="workingHours"
+              value={form.workingHours}
               onChange={handleChange}
-              rows={3}
+              placeholder="Например: Lunedì-Venerdì 08:00-12:00 14:30-18:00"
             />
           </div>
 

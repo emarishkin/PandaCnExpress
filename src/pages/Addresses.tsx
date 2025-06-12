@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaPhone, FaMapMarkerAlt, FaPlus } from "react-icons/fa";
+import { FaPhone, FaMapMarkerAlt, FaPlus, FaUser } from "react-icons/fa";
 import DashboardLayout from "../layouts/DashboardLayout";
 import CountryStatusList from "../components/CountryStatusList/CountryStatusList";
 import AddAddressModal from "../components/AddAddressModal/AddAddressModal";
@@ -13,13 +13,12 @@ const COUNTRIES = [
 ];
 
 export default function Addresses() {
-  const [selectedCountry, setSelectedCountry] = useState("us");
+  const [selectedCountry, setSelectedCountry] = useState("it");
   const [addressList, setAddressList] = useState(initialAddresses);
   const [modalOpen, setModalOpen] = useState(false);
 
   const filtered = addressList.filter((a) => a.country === selectedCountry);
-  const countryName = COUNTRIES.find(c => c.code === selectedCountry)?.name || "";
-
+  
   const handleAddAddress = (newAddr: any) => {
     setAddressList([...addressList, newAddr]);
   };
@@ -53,7 +52,6 @@ export default function Addresses() {
       >
         <div className="addresses-content">
           <div className="addresses-header">
-            {/* <h1>{countryName}</h1> */}
             <button 
               onClick={() => setModalOpen(true)} 
               className="add-address-button"
@@ -68,16 +66,36 @@ export default function Addresses() {
               filtered.map((addr) => (
                 <div key={addr.id} className="address-card">
                   <div className="card-header">
-                    <h3>{addr.title}</h3>
+                    <h2>{addr.title}</h2>
+                  </div>
+                  <div className="address-description">
+                    {addr.description}
                   </div>
                   <div className="address-details">
-                    {addr.lines.slice(0, 3).map((line, idx) => (
-                      <p key={idx}>
-                        {line.includes('Телефон') && <FaPhone className="detail-icon" />}
-                        {line.includes('Улица') && <FaMapMarkerAlt className="detail-icon" />}
-                        {line.length > 30 ? `${line.substring(0, 30)}...` : line}
-                      </p>
-                    ))}
+                    <p>
+                      <FaUser className="detail-icon" />
+                      <strong>First name:</strong> {addr.firstName}
+                    </p>
+                    <p>
+                      <FaUser className="detail-icon" />
+                      <strong>Last name:</strong> {addr.lastName}
+                    </p>
+                    <p>
+                      <FaMapMarkerAlt className="detail-icon" />
+                      <strong>Street:</strong> {addr.street}
+                    </p>
+                    <p>
+                      <FaMapMarkerAlt className="detail-icon" />
+                      <strong>Country:</strong> {addr.countryName}
+                    </p>
+                    <p>
+                      <FaMapMarkerAlt className="detail-icon" />
+                      <strong>City:</strong> {addr.city}
+                    </p>
+                    <p>
+                      <FaPhone className="detail-icon" />
+                      <strong>Phone:</strong> {addr.phone}
+                    </p>
                   </div>
                   <button 
                     className="delete-button"
@@ -108,29 +126,15 @@ export default function Addresses() {
 
 const initialAddresses = [
   {
-    id: 1,
+    id: 2,
     country: "us",
     title: "Нью-Йорк",
-    lines: [
-      "Фамилия: Б-4437, Усачев Сергей",
-      "Улица: Эммонс-авеню, 3047",
-      "Почтовый индекс: 11235",
-      "Страна: США",
-      "Город: Нью-Йорк",
-      "Телефон: +19176057707"
-    ],
-  },
-  {
-    id: 2,
-    country: "kr",
-    title: "Сеул",
-    lines: [
-      "Фамилия: K-5578, Иванова Анна",
-      "Улица: Gangnam-daero, 123",
-      "Почтовый индекс: 06123",
-      "Страна: Южная Корея",
-      "Город: Сеул",
-      "Телефон: +821077771234"
-    ],
+    description: "",
+    firstName: "",
+    lastName: "Б-4437, Усачев Сергей",
+    street: "Эммонс-авеню, 3047",
+    countryName: "США",
+    city: "Нью-Йорк",
+    phone: "+19176057707"
   }
 ];
