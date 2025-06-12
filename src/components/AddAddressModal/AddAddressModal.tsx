@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import '../AddAddressModal/AddAddressModal.css'
 
+const COUNTRIES = [
+  { code: "us", name: "США" },
+  { code: "cn", name: "Китай" },
+  { code: "tr", name: "Турция" },
+  { code: "kr", name: "Южная Корея" }
+];
+
 type Props = {
   onAdd: (address: any) => void;
   onClose: () => void;
@@ -8,35 +15,40 @@ type Props = {
 
 export default function AddAddressModal({ onAdd, onClose }: Props) {
   const [form, setForm] = useState({
-    country: "",
-    title: "",
-    lines: [""],
+    firstName: "",
+    lastName: "",
+    street: "",
+    zipCode: "",
+    country: "us",
+    city: "",
+    phone: "",
+    additionalPhone: "",
+    instructions: ""
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index?: number) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    if (name === "line") {
-      const newLines = [...form.lines];
-      if (typeof index === "number") newLines[index] = value;
-      setForm({ ...form, lines: newLines });
-    } else {
-      setForm({ ...form, [name]: value });
-    }
-  };
-
-  const addLine = () => {
-    setForm({ ...form, lines: [...form.lines, ""] });
+    setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.country || !form.title) return;
-    onAdd({
+    const newAddress = {
       id: Date.now(),
-      country: form.country.toLowerCase(),
-      title: form.title,
-      lines: form.lines.filter(line => line.trim() !== ""),
-    });
+      country: form.country,
+      title: `Ваш адрес в ${COUNTRIES.find(c => c.code === form.country)?.name} ${form.city}`,
+      lines: [
+        `Фамилия: ${form.lastName}`,
+        `Улица: ${form.street}`,
+        `Почтовый индекс: ${form.zipCode}`,
+        `Страна: ${COUNTRIES.find(c => c.code === form.country)?.name}`,
+        `Город: ${form.city}`,
+        `Телефон: ${form.phone}`,
+        ...(form.additionalPhone ? [`Телефон: ${form.additionalPhone}`] : []),
+        ...(form.instructions ? [`Инструкции: ${form.instructions}`] : [])
+      ].filter(Boolean)
+    };
+    onAdd(newAddress);
     onClose();
   };
 
@@ -45,40 +57,117 @@ export default function AddAddressModal({ onAdd, onClose }: Props) {
       <div className="modal">
         <h2>Добавить адрес</h2>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="country"
-            placeholder="Страна (напр. cn, us)"
-            value={form.country}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="title"
-            placeholder="Заголовок адреса"
-            value={form.title}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-row">
+            <div className="form-group">
+              <label>Имя *</label>
+              <input
+                type="text"
+                name="firstName"
+                value={form.firstName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Фамилия *</label>
+              <input
+                type="text"
+                name="lastName"
+                value={form.lastName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
 
-          {form.lines.map((line, i) => (
+          <div className="form-group">
+            <label>Улица и номер дома *</label>
             <input
-              key={i}
               type="text"
-              name="line"
-              placeholder={`Строка ${i + 1}`}
-              value={line}
-              onChange={(e) => handleChange(e, i)}
+              name="street"
+              value={form.street}
+              onChange={handleChange}
+              required
             />
-          ))}
-          <button type="button" onClick={addLine}>
-            + Добавить строку
-          </button>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label>Почтовый индекс *</label>
+              <input
+                type="text"
+                name="zipCode"
+                value={form.zipCode}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Страна *</label>
+              <select
+                name="country"
+                value={form.country}
+                onChange={handleChange}
+                required
+              >
+                {COUNTRIES.map(country => (
+                  <option key={country.code} value={country.code}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Город *</label>
+            <input
+              type="text"
+              name="city"
+              value={form.city}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Телефон *</label>
+            <input
+              type="tel"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Дополнительный телефон</label>
+            <input
+              type="tel"
+              name="additionalPhone"
+              value={form.additionalPhone}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Инструкции для курьера</label>
+            <textarea
+              name="instructions"
+              value={form.instructions}
+              onChange={handleChange}
+              rows={3}
+            />
+          </div>
 
           <div className="modal-actions">
-            <button type="submit">Сохранить</button>
-            <button type="button" onClick={onClose} className="cancel">Отмена</button>
+            <button type="button" onClick={onClose} className="cancel">
+              Отмена
+            </button>
+            <button type="submit" className="submit">
+              Сохранить адрес
+            </button>
           </div>
         </form>
       </div>

@@ -1,133 +1,159 @@
-/* Основная структура */
-.country-sidebar {
- 
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
-  
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.addresses-content {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto;
-}
-
-/* Шапка */
-.addresses-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.addresses-header h1 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-}
-
-/* Карточки адресов */
-.address-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+/* Добавьте эти стили в ваш Addresses.css */
 
 .address-card {
   background: white;
   border-radius: 12px;
   padding: 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eee;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 25px;
+      width: 220px;
 }
 
-.address-card h2 {
+.address-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-header h2 {
   font-size: 20px;
   color: #d4002a;
-  margin-top: 0;
-  margin-bottom: 15px;
+  margin: 0;
+  font-weight: 600;
+  flex: 1;
+}
+
+.delete-button {
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  color: #d4002a;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.delete-button:hover {
+  background: #ffeeee;
 }
 
 .address-description {
   color: #666;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.address-details {
+  margin-bottom: 15px;
 }
 
 .address-details p {
-  margin: 8px 0;
+  margin: 10px 0;
   font-size: 15px;
   color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.detail-icon {
+  margin-right: 10px;
+  color: #d4002a;
+  min-width: 16px;
 }
 
 .working-hours {
   margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
   color: #666;
   font-size: 14px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
 }
 
-/* Кнопка добавления */
+.address-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #d4002a, #ff4d4d);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px dashed #ddd;
+}
+
+.empty-state img {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  color: #555;
+  margin-bottom: 20px;
+}
+
 .add-address-button {
-    background: #d4002a;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 15px 29px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
+  background: #d4002a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
 }
 
 .add-address-button:hover {
   background: #b30022;
 }
-
-.desktop-only {
-  display: block;
+.addresses-header {
+    flex-direction: column;
+    display: flex
+;
+    align-items: end;
+    margin-bottom: 20px;
 }
 
-.mobile-only {
-  display: none;
-  margin-top: 20px;
-  width: 100%;
+.address-cards.compact{
+ display: flex;
+ flex-wrap: wrap;
+ gap: 50px;
 }
 
-/* Адаптив */
+
 @media (max-width: 768px) {
-  .country-sidebar {
-    width: 100%;
-    padding: 15px;
-    border-right: none;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .addresses-content {
-    padding: 20px;
-  }
-  
-  .addresses-header {
+  .card-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
   }
   
-  .desktop-only {
-    display: none;
-  }
-  
-  .mobile-only {
-    display: block;
-  }
-  
-  .address-card {
-    padding: 20px;
+  .delete-button {
+    margin-top: 10px;
+    align-self: flex-end;
   }
 }

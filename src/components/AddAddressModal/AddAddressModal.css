@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,47 +14,165 @@
 
 .modal {
   background: #fff;
-  padding: 30px;
+  padding: 32px;
   border-radius: 16px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 
+    0 6px 30px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(0);
+  animation: modalAppear 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal h2 {
-  margin-bottom: 20px;
-  font-size: 20px;
+  margin: 0 0 28px 0;
+  font-size: 22px;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
 }
 
-.modal form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.modal h2:after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #d4002a, #ff6b8b);
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
   font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  background-color: #fafafa;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #d4002a;
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(212, 0, 42, 0.12),
+    inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  min-width: 0;
 }
 
 .modal-actions {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 16px;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 28px;
 }
 
 .modal-actions button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-}
-
-.modal-actions button[type="submit"] {
-  background: #d4002a;
-  color: white;
+  transition: all 0.25s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .modal-actions .cancel {
+  background: #f7f7f7;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-actions .cancel:hover {
   background: #eee;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.modal-actions .submit {
+  background: linear-gradient(135deg, #d4002a, #ff4757);
+  color: white;
+  border: none;
+  box-shadow: 
+    0 3px 10px rgba(212, 0, 42, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.modal-actions .submit:hover {
+  background: linear-gradient(135deg, #b80025, #e8414e);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 15px rgba(212, 0, 42, 0.3),
+    0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Стили для select с иконкой */
+.form-group select {
+  height: 48px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23555'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+}
+
+/* Микровзаимодействия */
+button:active {
+  transform: translateY(0) !important;
+  transition-duration: 0.1s;
+}
+
+/* Подсветка обязательных полей */
+.form-group label[required]:after {
+  content: ' *';
+  color: #d4002a;
 }

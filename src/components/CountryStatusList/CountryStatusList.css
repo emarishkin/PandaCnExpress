@@ -1,7 +1,10 @@
 .country-status-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .country-box {
@@ -50,7 +53,7 @@
   }
   
   .country-box {
-    min-width: 120px;
+    min-width: 160px;
     white-space: nowrap;
   }
 }
