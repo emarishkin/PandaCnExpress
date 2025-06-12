@@ -20,7 +20,7 @@ export const Header:FC = ()  => {
   return (
     <div className="header">
       <div className="header-left">
-        <span className="header-title">Главная</span>
+        <span className="header-title">Профиль</span>
       </div>
       <div className="header-right">
         <div className="header-bonus">

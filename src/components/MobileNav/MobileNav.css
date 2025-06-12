@@ -10,6 +10,7 @@
   justify-content: space-around;
   align-items: center;
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 .nav-btn {
@@ -37,8 +38,13 @@
   font-weight: bold;
 }
 
+
+
 @media (max-width: 768px) {
   .mobile-nav {
     display: flex;
+  }
+  body {
+    padding-bottom: 64px;
   }
 }
