@@ -1,7 +1,8 @@
-import  { useState } from "react";
+import { useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AddReceiverModal from "../components/AddReceiverModal/AddReceiverModal";
 import '../style/Receivers.css';
+import { FaUser, FaPhone, FaMapMarkerAlt, FaGlobe } from "react-icons/fa";
 
 export default function Receivers() {
   const [receivers, setReceivers] = useState([
@@ -33,7 +34,7 @@ export default function Receivers() {
     <>
       {modalOpen && (
         <AddReceiverModal
-          onAdd={(newR) => setReceivers([...receivers, newR])}
+          onAdd={(newR) => setReceivers([...receivers, { ...newR, id: Date.now() }])}
           onClose={() => setModalOpen(false)}
         />
       )}
@@ -41,7 +42,9 @@ export default function Receivers() {
       <DashboardLayout>
         <div className="receivers-header">
           <h2>Получатели</h2>
-          <button className="add-button" onClick={() => setModalOpen(true)}>+ Добавить</button>
+          <button className="add-button" onClick={() => setModalOpen(true)}>
+            <FaUser /> Добавить получателя
+          </button>
         </div>
 
         <div className="receiver-list">
@@ -49,12 +52,29 @@ export default function Receivers() {
             <div key={r.id} className="receiver-card">
               <h3>{r.name}</h3>
               <ul>
-                <li><strong>Телефон:</strong> {r.phone}</li>
-                <li><strong>Страна:</strong> {r.country}</li>
-                <li><strong>Город:</strong> {r.city}</li>
-                <li><strong>Адрес:</strong> {r.address}</li>
+                <li>
+                  <FaPhone style={{ marginRight: 10, color: "#d4002a" }} />
+                  <strong>Телефон:</strong> {r.phone}
+                </li>
+                <li>
+                  <FaGlobe style={{ marginRight: 10, color: "#d4002a" }} />
+                  <strong>Страна:</strong> {r.country}
+                </li>
+                <li>
+                  <FaMapMarkerAlt style={{ marginRight: 10, color: "#d4002a" }} />
+                  <strong>Город:</strong> {r.city}
+                </li>
+                <li>
+                  <FaMapMarkerAlt style={{ marginRight: 10, color: "#d4002a" }} />
+                  <strong>Адрес:</strong> {r.address}
+                </li>
               </ul>
-              <button className="delete-button" onClick={() => handleDelete(r.id)}>Удалить</button>
+              <button 
+                className="delete-button" 
+                onClick={() => handleDelete(r.id)}
+              >
+                Удалить получателя
+              </button>
             </div>
           ))}
         </div>

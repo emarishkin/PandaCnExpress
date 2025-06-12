@@ -1,37 +1,129 @@
+/* Обновленный Receivers.css */
+
 .receivers-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.receivers-header h2 {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.add-button {
+  background: #d4002a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(212, 0, 42, 0.2);
+}
+
+.add-button:hover {
+  background: #b30022;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 0, 42, 0.3);
+}
+
+.add-button:active {
+  transform: translateY(0);
 }
 
 .receiver-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
 }
 
 .receiver-card {
-  background: #fff;
-  border: 1px solid #ddd;
+  background: white;
   border-radius: 12px;
-  padding: 18px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.receiver-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.receiver-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #d4002a, #ff4d4d);
 }
 
 .receiver-card h3 {
-  margin-bottom: 10px;
+  font-size: 18px;
   color: #d4002a;
-  font-size: 16px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
 }
 
 .receiver-card ul {
   list-style: none;
   padding: 0;
-  font-size: 14px;
-  color: #333;
+  margin: 0 0 20px 0;
 }
 
 .receiver-card li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+}
+
+.receiver-card li strong {
+  color: #666;
+  min-width: 80px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.delete-button {
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  color: #d4002a;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background: #ffeeee;
+  border-color: #d4002a;
+}
+
+@media (max-width: 768px) {
+  .receivers-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .receiver-list {
+    grid-template-columns: 1fr;
+  }
 }
