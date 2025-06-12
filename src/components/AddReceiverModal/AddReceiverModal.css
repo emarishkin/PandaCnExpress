@@ -238,3 +238,66 @@ input[required] + label::after {
   content: ' *';
   color: #d4002a;
 }
+
+/* Добавьте в конец файла AddReceiverModal.css */
+
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+   
+    max-height: 70vh;
+    overflow-y: auto;
+    margin: 20px 30px; /* Добавлены верхние и нижние отступы */
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+
+  .modal h3 {
+    font-size: 16px;
+    margin: 20px 0 14px;
+  }
+
+  .form-row input {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+
+  .form-divider {
+    margin: 18px 0;
+  }
+}
+
+@media (max-width: 480px) {
+ 
+
+  .modal h2 {
+    font-size: 18px;
+    padding-bottom: 8px;
+  }
+
+  .modal h2::after {
+    width: 60px;
+    height: 2px;
+  }
+
+  .form-row input {
+    padding: 12px 14px;
+  }
+}

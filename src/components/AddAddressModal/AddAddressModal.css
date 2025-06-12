@@ -176,3 +176,63 @@ button:active {
   content: ' *';
   color: #d4002a;
 }
+
+
+/* Добавьте в конец файла AddAddressModal.css */
+
+@media (max-width: 768px) {
+      .modal {
+        width: 96%;
+        padding: 20px 16px;
+        max-height: 70vh;
+        overflow-y: auto;
+        margin: 20px 30px;
+    }
+
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-row .form-group {
+    width: 100%;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+
+  .form-group textarea {
+    min-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+ 
+
+  .modal h2 {
+    font-size: 18px;
+  }
+
+  .modal h2:after {
+    width: 50px;
+    height: 2px;
+  }
+}
