@@ -1,6 +1,8 @@
 import  { useState } from "react";
 import '../Sidebar/Sidebar.css'
 import { useLocation, useNavigate } from "react-router-dom";
+import siderImg from '/siderImg.png'
+import logo from '/logo.png'
 import {
   FiHome,
   FiMapPin,
@@ -27,7 +29,10 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <div className="logo">PANDA EXPRESS</div>
+        <div className="logo">
+          <img style={{width:120,height:120}} src={logo} alt="" />
+          <h2 style={{fontSize:22,textAlign:'center'}}>PANDA EXPRESS</h2>
+        </div>
 
         <button
           className={`menu-toggle ${menuOpen ? "open" : ""}`}
@@ -56,6 +61,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="user-id-box">
+        <img src={siderImg} alt="" />
         <p>
           <strong>Ваш ID: B-4437</strong>
         </p>
