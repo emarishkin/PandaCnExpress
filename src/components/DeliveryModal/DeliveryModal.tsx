@@ -13,9 +13,9 @@ export default function DeliveryModal({ onClose }: { onClose: () => void }) {
         <h3>Выберите тип доставки</h3>
         <div className="delivery-options">
           {[
-            { key: "avia", label: "Авиа", min: "", img: "/images/avia.png" },
-            { key: "auto", label: "Авто", min: "Минимальный вес 20 кг", img: "/images/auto.png" },
-            { key: "container", label: "Контейнер", min: "Минимальный вес 50 кг", img: "/images/container.png" },
+            { key: "avia", label: "Авиа", min: "", img: "/aviadostavka.png" },
+            { key: "auto", label: "Авто", min: "Минимальный вес 20 кг", img: "/avtodostavka.png" },
+            { key: "container", label: "Контейнер", min: "Минимальный вес 50 кг", img: "/konteynerdostavka.png" },
           ].map((opt) => (
             <div
               key={opt.key}
