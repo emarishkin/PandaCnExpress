@@ -1,8 +1,16 @@
 import { useState } from "react";
-import '../DeliveryModal/DeliveryModal.css'
+import { useNavigate } from "react-router-dom";
+import "../DeliveryModal/DeliveryModal.css";
 
 export default function DeliveryModal({ onClose }: { onClose: () => void }) {
   const [selected, setSelected] = useState<"avia" | "auto" | "container" | null>(null);
+  const navigate = useNavigate();
+
+  const handleConfirm = () => {
+    if (!selected) return;
+    onClose();
+    navigate(`/add?type=${selected}`);
+  };
 
   return (
     <div className="modal-backdrop">
@@ -30,8 +38,12 @@ export default function DeliveryModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="modal-actions">
-          <button onClick={onClose} className="cancel-btn">Отменить</button>
-          <button className="confirm-btn">Выбрать</button>
+          <button onClick={onClose} className="cancel-btn">
+            Отменить
+          </button>
+          <button className="confirm-btn" onClick={handleConfirm} disabled={!selected}>
+            Выбрать
+          </button>
         </div>
       </div>
     </div>

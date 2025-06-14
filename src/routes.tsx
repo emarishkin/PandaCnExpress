@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Receivers from "./pages/Receivers";
 import Finances from "./pages/Finances";
 import Settings from "./pages/Settings";
+import AddOrderPage from "./pages/AddOrderPage";
 
 
 
@@ -19,6 +20,7 @@ export default function AppRoutes() {
         <Route path="/receivers" element={<Receivers/>} />
         <Route path="/finance" element={<Finances />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/add" element={<AddOrderPage />} />
       </Routes>
     </BrowserRouter>
   );
