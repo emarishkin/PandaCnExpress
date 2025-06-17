@@ -1,16 +1,50 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../DeliveryModal/DeliveryModal.css";
+import "./DeliveryModal.css";
 
-export default function DeliveryModal({ onClose }: { onClose: () => void }) {
-  const [selected, setSelected] = useState<"avia" | "auto" | "container" | null>(null);
+interface DeliveryModalProps {
+  onClose: () => void;
+  onAddPackage?: () => void; // Добавляем опциональный пропс
+}
+
+type DeliveryType = "avia" | "auto" | "container";
+
+export default function DeliveryModal({ onClose, onAddPackage }: DeliveryModalProps) {
+  const [selected, setSelected] = useState<DeliveryType | null>(null);
   const navigate = useNavigate();
 
   const handleConfirm = () => {
     if (!selected) return;
+    
+    // Вызываем onAddPackage если он передан
+    if (onAddPackage) {
+      onAddPackage();
+    }
+    
     onClose();
     navigate(`/add?type=${selected}`);
   };
+
+  const deliveryOptions = [
+    { 
+      key: "avia" as const, 
+      label: "Авиа", 
+      min: "", 
+      img: "/aviadostavka.png" 
+    },
+    { 
+      key: "auto" as const, 
+      label: "Авто", 
+      min: "Минимальный вес 20 кг", 
+      img: "/avtodostavka.png" 
+    },
+    { 
+      key: "container" as const, 
+      label: "Контейнер", 
+      min: "Минимальный вес 50 кг", 
+      img: "/konteynerdostavka.png" 
+    },
+  ];
 
   return (
     <div className="modal-backdrop">
@@ -20,15 +54,11 @@ export default function DeliveryModal({ onClose }: { onClose: () => void }) {
         </button>
         <h3>Выберите тип доставки</h3>
         <div className="delivery-options">
-          {[
-            { key: "avia", label: "Авиа", min: "", img: "/aviadostavka.png" },
-            { key: "auto", label: "Авто", min: "Минимальный вес 20 кг", img: "/avtodostavka.png" },
-            { key: "container", label: "Контейнер", min: "Минимальный вес 50 кг", img: "/konteynerdostavka.png" },
-          ].map((opt) => (
+          {deliveryOptions.map((opt) => (
             <div
               key={opt.key}
               className={`option ${selected === opt.key ? "selected" : ""}`}
-              onClick={() => setSelected(opt.key as any)}
+              onClick={() => setSelected(opt.key)}
             >
               <img src={opt.img} alt={opt.label} />
               <div>{opt.label}</div>
@@ -41,7 +71,11 @@ export default function DeliveryModal({ onClose }: { onClose: () => void }) {
           <button onClick={onClose} className="cancel-btn">
             Отменить
           </button>
-          <button className="confirm-btn" onClick={handleConfirm} disabled={!selected}>
+          <button 
+            className="confirm-btn" 
+            onClick={handleConfirm} 
+            disabled={!selected}
+          >
             Выбрать
           </button>
         </div>
