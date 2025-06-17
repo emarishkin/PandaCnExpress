@@ -81,6 +81,7 @@ height: calc(100% - 60px);
     overflow-y: auto;
     /* Убираем скроллбар для веб-версии */
     scrollbar-width: none; /* Для Firefox */
+    padding-top: 5px;
 }
 
 /* Скрываем скроллбар для веб-версии в Chrome/Safari */
@@ -105,6 +106,8 @@ align-content: start;
 }
 
 .status-item {
+position: relative;
+z-index: 1;
 background: #fff;
 padding: 20px;
 border-radius: 16px;
@@ -118,8 +121,9 @@ overflow: hidden;
 }
 
 .status-item:hover {
-transform: translateY(-4px);
+transform: translateY(-2px); /* было -4px */
 box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+z-index: 2; /* поднимаем элемент выше при наведении */
 }
 
 .status-item.active {
@@ -306,6 +310,18 @@ min-width: 220px;
 .orders-list {
 grid-template-columns: 1fr;
 }
+
+.order-card {
+    min-height: auto;
+    padding: 16px;
+  }
+  .order-label {
+    min-width: 100px; /* Уменьшаем ширину меток */
+  }
+  .order-value {
+    font-size: 13px; /* Уменьшаем размер шрифта */
+  }
+
 }
 
 @media (max-width: 480px) {

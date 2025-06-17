@@ -13,15 +13,16 @@ export default function AddOrderPage() {
   const [showReceiverModal, setShowReceiverModal] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
 
-  const [quantity, setQuantity] = useState(1);
-  const [weight, setWeight] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState<number | "">(1);
+  const [weight, setWeight] = useState<number | "">("");
+  const [price, setPrice] = useState<number | "">("");
   const [recipient, setRecipient] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
   const [trackingCode, setTrackingCode] = useState("");
   const [cargoType, setCargoType] = useState("");
+  const [deliveryPrice, setDeliveryPrice] = useState(0);
 
   useEffect(() => {
     if (!type) {
@@ -29,22 +30,37 @@ export default function AddOrderPage() {
       return;
     }
 
-    // Генерация трек-кода если его нет
     if (!trackingCode) {
       setTrackingCode("TRACK-" + Math.random().toString(36).substring(2, 10).toUpperCase());
     }
-  }, [type, navigate]);
+    
+    setDeliveryPrice(calculateTotal(weight === "" ? 0 : weight));
+  }, [type, navigate, weight]);
 
-  const calculateTotal = () => {
-    if (!type) return "0.00";
+  const calculateTotal = (currentWeight: number) => {
+    if (!type) return 0;
     
     let baseRate = 1;
     if (type === "auto") baseRate = 3.5;
     if (type === "avia") baseRate = 5.0;
     if (type === "container") baseRate = 2.2;
 
-    const total = weight * baseRate;
-    return total.toFixed(2);
+    return currentWeight * baseRate;
+  };
+
+  const handleWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setWeight(value === "" ? "" : +value);
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPrice(value === "" ? "" : +value);
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setQuantity(value === "" ? "" : +value);
   };
 
   const handleAddReceiver = (newReceiver: any) => {
@@ -63,7 +79,11 @@ export default function AddOrderPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!type || !recipient || !address || !phone || !weight || !price || !trackingCode || !cargoType) {
+    const finalWeight = weight === "" ? 0 : weight;
+    const finalPrice = price === "" ? 0 : price;
+    const finalQuantity = quantity === "" ? 1 : quantity;
+
+    if (!type || !recipient || !address || !phone || !finalWeight || !finalPrice || !trackingCode || !cargoType) {
       alert("Пожалуйста, заполните все обязательные поля");
       return;
     }
@@ -74,15 +94,15 @@ export default function AddOrderPage() {
       recipient,
       address,
       phone,
-      weight,
-      price: parseFloat(calculateTotal()),
+      weight: finalWeight,
+      price: deliveryPrice,
       trackingCode,
       status: "Новые заявки" as const,
       createdAt: new Date(),
       updatedAt: new Date(),
       comment,
       cargoType,
-      quantity
+      quantity: finalQuantity
     };
 
     const existingOrders = JSON.parse(localStorage.getItem('deliveryOrders') || '[]');
@@ -200,8 +220,9 @@ export default function AddOrderPage() {
                 <input 
                   type="number" 
                   value={quantity} 
-                  onChange={(e) => setQuantity(+e.target.value)} 
+                  onChange={handleQuantityChange} 
                   min="1"
+                  placeholder="1"
                   required
                 />
               </div>
@@ -210,8 +231,9 @@ export default function AddOrderPage() {
                 <input 
                   type="number" 
                   value={price} 
-                  onChange={(e) => setPrice(+e.target.value)} 
+                  onChange={handlePriceChange} 
                   min="0"
+                  placeholder="0"
                   required
                 />
               </div>
@@ -229,12 +251,19 @@ export default function AddOrderPage() {
                 <input 
                   type="number" 
                   value={weight} 
-                  onChange={(e) => {
-                    setWeight(+e.target.value);
-                    setPrice(+calculateTotal());
-                  }} 
+                  onChange={handleWeightChange} 
                   min={type === "auto" ? 20 : type === "container" ? 50 : 0}
+                  placeholder={type === "auto" ? "20" : type === "container" ? "50" : "0"}
                   required
+                />
+              </div>
+              <div className="form-group">
+                <label>Стоимость доставки ($)</label>
+                <input 
+                  type="number" 
+                  value={deliveryPrice.toFixed(2)} 
+                  readOnly
+                  className="readonly-input"
                 />
               </div>
             </div>
@@ -245,8 +274,8 @@ export default function AddOrderPage() {
               Стоимость доставки груза приблизительная. После точного взвешивания на складе сформируется точная цена за доставку.
             </p>
             <div className="price-section">
-              <span className="price-label">Цена:</span>
-              <span className="price-value">{calculateTotal()} $</span>
+              <span className="price-label">Цена доставки:</span>
+              <span className="price-value">{deliveryPrice.toFixed(2)} $</span>
             </div>
             <button type="submit" className="save-btn">Сохранить заявку</button>
           </div>

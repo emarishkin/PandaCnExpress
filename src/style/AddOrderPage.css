@@ -12,8 +12,7 @@ h2 {
   color: #333;
   font-size: 28px;
   font-weight: 700;
-  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
-  -webkit-text-fill-color: transparent;
+ 
   display: inline-block;
 }
 
@@ -172,8 +171,6 @@ input:focus, .select-input:focus {
 .price-value {
   font-size: 24px;
   font-weight: 700;
-  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
-  -webkit-text-fill-color: transparent;
 }
 
 .save-btn {
