@@ -1,98 +1,322 @@
 .status-section {
-  display: flex;
-  flex-direction: column;
+display: flex;
+flex-direction: column;
+height: 100%;
+background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+padding: 24px;
+border-radius: 24px;
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
 .status-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 0;
+padding-bottom: 24px;
+border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .add-package-btn {
-  background: #d4002a;
-  color: #fff;
-  padding: 16px 34px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 15px;
-  margin-left: auto;
+background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+color: #fff;
+padding: 16px 34px;
+border: none;
+border-radius: 12px;
+font-weight: 600;
+cursor: pointer;
+font-size: 15px;
+margin-left: auto;
+transition: all 0.3s ease;
+box-shadow: 0 4px 15px rgba(110, 69, 226, 0.3);
+position: relative;
+overflow: hidden;
+}
+
+.add-package-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(110, 69, 226, 0.4);
+}
+
+.add-package-btn:active {
+transform: translateY(0);
+}
+
+.add-package-btn::after {
+content: '';
+position: absolute;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: linear-gradient(
+to bottom right,
+rgba(255, 255, 255, 0.3) 0%,
+rgba(255, 255, 255, 0) 60%
+);
+transform: rotate(30deg);
+transition: all 0.3s ease;
+}
+
+.add-package-btn:hover::after {
+left: 100%;
+top: 100%;
+}
+
+.status-container {
+display: flex;
+gap: 24px;
+margin-top: 20px;
+height: calc(100% - 60px);
 }
 
 .status-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  margin-top: 20px;
-  width: fit-content;
-  padding-right: 73px;
-  border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 270px;
+    padding-right: 80px;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    height: 100%;
+    overflow-y: auto;
+    /* Убираем скроллбар для веб-версии */
+    scrollbar-width: none; /* Для Firefox */
+}
+
+/* Скрываем скроллбар для веб-версии в Chrome/Safari */
+.status-list::-webkit-scrollbar {
+    display: none;
+}
+
+.status-list::-webkit-scrollbar-thumb {
+background-color: #6e45e2;
+border-radius: 3px;
+}
+
+.orders-list {
+flex: 1;
+height: 100%;
+overflow-y: auto;
+padding-right: 8px;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Увеличена минимальная ширина карточек */
+gap: 20px;
+align-content: start;
 }
 
 .status-item {
-  background: #f5f6fa;
-  padding: 25px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-  width: 100%;
-  font-size: 20px;
+background: #fff;
+padding: 20px;
+border-radius: 16px;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+width: 100%;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+border: 1px solid rgba(0, 0, 0, 0.03);
+position: relative;
+overflow: hidden;
+}
+
+.status-item:hover {
+transform: translateY(-4px);
+box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .status-item.active {
-  border: 2px solid #d4002a;
-  background: #fff;
+border: 2px solid #6e45e2;
+background: #fff;
+box-shadow: 0 4px 20px rgba(110, 69, 226, 0.15);
+}
+
+.status-item.active::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 4px;
+height: 100%;
+background: linear-gradient(to bottom, #6e45e2, #88d3ce);
 }
 
 .status-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 100%;
 }
 
 .status-count {
-  background: #d4002a;
-  color: white;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  margin: 0 10px;
+background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+color: white;
+border-radius: 50%;
+width: 28px;
+height: 28px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 14px;
+font-weight: 600;
+margin: 0 10px;
+box-shadow: 0 2px 6px rgba(110, 69, 226, 0.3);
 }
 
 .status-icon {
-  color: #d4002a;
-  font-weight: bold;
+color: #6e45e2;
+font-weight: bold;
+font-size: 18px;
+transition: transform 0.3s ease;
 }
 
-/* Mobile styles */
+.status-item:hover .status-icon {
+transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+.status-list {
+width: 300px;
+}
+.orders-list {
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+}
+
+/* Добавим эти стили в конец файла */
+.status-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.status-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.status-text {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.status-count {
+  font-weight: 500;
+  font-size: 13px;
+  color: #6e45e2;
+  background: none;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0;
+  box-shadow: none;
+}
+
+.status-icon {
+  color: #6e45e2;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.status-item:hover .status-icon {
+  transform: translateX(4px);
+}
+
+/* Обновим существующие стили для .status-count (заменяем старые) */
+.status-count {
+  background: none;
+  color: #6e45e2;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  box-shadow: none;
+}
+
+/* Добавим иконки для каждого статуса */
+.status-item[data-status="Новые заявки"] .status-icon::before {
+  content: "🆕";
+}
+
+.status-item[data-status="На складе"] .status-icon::before {
+  content: "📦";
+}
+
+.status-item[data-status="Готовится к отправке"] .status-icon::before {
+  content: "🚚";
+}
+
+.status-item[data-status="В пути"] .status-icon::before {
+  content: "✈️";
+}
+
+.status-item[data-status="Готов к выдаче"] .status-icon::before {
+  content: "📌";
+}
+
+.status-item[data-status="Доставлено"] .status-icon::before {
+  content: "✅";
+}
+
+
+@media (max-width: 768px) {
+.status-section {
+padding: 16px;
+border-radius: 16px;
+}
+
+.status-container {
+flex-direction: column;
+}
+
+.status-list {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        padding-bottom: 20px;
+        padding-right: 0;
+        flex-direction: row;
+        overflow-x: auto;
+        height: auto;
+        /* Восстанавливаем скроллбар для мобильной версии */
+        scrollbar-width: thin; /* Для Firefox */
+    }
+
+    /* Восстанавливаем стили скроллбара для мобильной версии в Chrome/Safari */
+    .status-list::-webkit-scrollbar {
+        display: block;
+        width: 6px;
+        height: 6px; /* Для горизонтального скролла */
+    }
+
+    .status-list::-webkit-scrollbar-thumb {
+        background-color: #6e45e2;
+        border-radius: 3px;
+    }
+
+.status-item {
+min-width: 220px;
+}
+
+.orders-list {
+grid-template-columns: 1fr;
+}
+}
+
 @media (max-width: 480px) {
-  .status-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-  
-  .add-package-btn {
-    width: 100%;
-    margin-left: 0;
-  }
-  
-  .status-count {
-    font-size: 22px;
-  }
-  
-  .status-label {
-    font-size: 12px;
-  }
+.status-header {
+flex-direction: column;
+align-items: flex-start;
+gap: 16px;
+}
+
+.add-package-btn {
+width: 100%;
+margin-left: 0;
+}
 }

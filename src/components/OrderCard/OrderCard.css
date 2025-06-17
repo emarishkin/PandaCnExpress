@@ -1,0 +1,172 @@
+.order-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  margin-bottom: 20px; /* Добавлен отступ снизу */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.order-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.order-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #6e45e2, #88d3ce);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.order-id {
+  font-size: 14px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+}
+
+.order-type {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-type.avia {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.order-type.auto {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+}
+
+.order-type.container {
+  background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
+  color: white;
+}
+
+.order-body {
+  margin-bottom: 16px;
+}
+
+.order-row {
+  display: flex;
+  margin-bottom: 12px;
+  font-size: 14px;
+  align-items: flex-start;
+}
+
+.order-label {
+  font-weight: 600;
+  color: #666;
+  min-width: 120px;
+  opacity: 0.8;
+}
+
+.order-value {
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+  word-break: break-word;
+}
+
+.tracking-code {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  background: rgba(110, 69, 226, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+}
+
+.order-date {
+  color: #888;
+  font-size: 12px;
+}
+
+.order-status {
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-status.Новые-заявки {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.order-status.На-складе {
+  background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
+  color: white;
+}
+
+.order-status.Готовится-к-отправке {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+}
+
+.order-status.В-пути {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+}
+
+.order-status.Готов-к-выдаче {
+  background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+  color: white;
+}
+
+.order-status.Доставлено {
+  background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+  color: white;
+}
+
+/* Анимация при наведении */
+.order-card:hover .order-type {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Добавляем отступы между карточками в сетке */
+@media (min-width: 768px) {
+  .order-card {
+    margin-bottom: 0; /* Убираем отступ снизу для сетки */
+  }
+}

@@ -1,49 +1,45 @@
+// DeliveryModal.tsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./DeliveryModal.css";
 
 interface DeliveryModalProps {
   onClose: () => void;
-  onAddPackage?: () => void; // Добавляем опциональный пропс
+  onAddOrder: (order: {
+    type: "avia" | "auto" | "container";
+    recipient: string;
+    address: string;
+    phone: string;
+    weight: number;
+    price: number;
+    trackingCode: string;
+  }) => void;
 }
 
-type DeliveryType = "avia" | "auto" | "container";
-
-export default function DeliveryModal({ onClose, onAddPackage }: DeliveryModalProps) {
-  const [selected, setSelected] = useState<DeliveryType | null>(null);
-  const navigate = useNavigate();
+export default function DeliveryModal({ onClose, onAddOrder }: DeliveryModalProps) {
+  const [selected, setSelected] = useState<"avia" | "auto" | "container" | null>(null);
+  
 
   const handleConfirm = () => {
     if (!selected) return;
     
-    // Вызываем onAddPackage если он передан
-    if (onAddPackage) {
-      onAddPackage();
-    }
+    const newOrder = {
+      type: selected,
+      recipient: "Новый получатель",
+      address: "Адрес не указан",
+      phone: "+7 (___) ___-__-__",
+      weight: 0,
+      price: 0,
+      trackingCode: "TRACK-" + Math.random().toString(36).substring(2, 10).toUpperCase()
+    };
     
+    onAddOrder(newOrder);
     onClose();
-    navigate(`/add?type=${selected}`);
   };
 
   const deliveryOptions = [
-    { 
-      key: "avia" as const, 
-      label: "Авиа", 
-      min: "", 
-      img: "/aviadostavka.png" 
-    },
-    { 
-      key: "auto" as const, 
-      label: "Авто", 
-      min: "Минимальный вес 20 кг", 
-      img: "/avtodostavka.png" 
-    },
-    { 
-      key: "container" as const, 
-      label: "Контейнер", 
-      min: "Минимальный вес 50 кг", 
-      img: "/konteynerdostavka.png" 
-    },
+    { key: "avia", label: "Авиа", min: "", img: "/aviadostavka.png" },
+    { key: "auto", label: "Авто", min: "Минимальный вес 20 кг", img: "/avtodostavka.png" },
+    { key: "container", label: "Контейнер", min: "Минимальный вес 50 кг", img: "/konteynerdostavka.png" },
   ];
 
   return (
@@ -58,7 +54,7 @@ export default function DeliveryModal({ onClose, onAddPackage }: DeliveryModalPr
             <div
               key={opt.key}
               className={`option ${selected === opt.key ? "selected" : ""}`}
-              onClick={() => setSelected(opt.key)}
+              onClick={() => setSelected(opt.key as any)}
             >
               <img src={opt.img} alt={opt.label} />
               <div>{opt.label}</div>

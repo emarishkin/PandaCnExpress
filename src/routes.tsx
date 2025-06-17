@@ -1,3 +1,4 @@
+// routes.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Addresses from "./pages/Addresses";
@@ -8,12 +9,10 @@ import Settings from "./pages/Settings";
 import AddOrderPage from "./pages/AddOrderPage";
 
 
-
 export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/addresses" element={<Addresses />} />

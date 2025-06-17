@@ -1,15 +1,11 @@
-
-import StatusList from "../components/StatusList/StatusList";
+// Dashboard.tsx
 import DashboardLayout from "../layouts/DashboardLayout";
-
-
+import StatusList from "../components/StatusList/StatusList";
 
 export default function Dashboard() {
   return (
-    <DashboardLayout statusList={<StatusList />}>
-      <h2></h2>
+    <DashboardLayout>
+      <StatusList />
     </DashboardLayout>
   );
 }
-
-
