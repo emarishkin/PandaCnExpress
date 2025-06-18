@@ -1,64 +1,51 @@
 .modal-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(6px);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .modal {
   background: #fff;
-  padding: 32px;
   border-radius: 16px;
+  padding: 32px;
   width: 100%;
-  max-width: 480px;
-  box-shadow: 
-    0 6px 30px rgba(0, 0, 0, 0.12),
-    0 0 0 1px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transform: translateY(0);
-  animation: modalAppear 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes modalAppear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  max-width: 580px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.1);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal h2 {
-  margin: 0 0 28px 0;
-  font-size: 22px;
+  margin: 0 0 24px 0;
+  font-size: 24px;
   color: #1a1a1a;
   font-weight: 700;
   text-align: center;
   position: relative;
+  padding-bottom: 12px;
 }
 
-.modal h2:after {
+.modal h2::after {
   content: '';
-  display: block;
-  width: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, #d4002a, #ff6b8b);
-  margin: 12px auto 0;
+  background: linear-gradient(90deg, #6e45e2, #88d3ce);
   border-radius: 3px;
 }
 
 .form-group {
   margin-bottom: 18px;
-  position: relative;
 }
 
 .form-group label {
@@ -74,23 +61,20 @@
 .form-group textarea {
   width: 100%;
   padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
   font-size: 15px;
-  box-sizing: border-box;
   transition: all 0.25s ease;
-  background-color: #fafafa;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+  background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #d4002a;
+  border-color: #6e45e2;
   outline: none;
-  box-shadow: 
-    0 0 0 3px rgba(212, 0, 42, 0.12),
-    inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 3px rgba(110, 69, 226, 0.1);
   background-color: #fff;
 }
 
@@ -100,64 +84,53 @@
 }
 
 .form-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
-}
-
-.form-row .form-group {
-  flex: 1;
-  min-width: 0;
 }
 
 .modal-actions {
   display: flex;
-  justify-content: flex-end;
   gap: 16px;
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .modal-actions button {
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-size: 15px;
+  flex: 1;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: all 0.25s ease;
+}
+
+.modal-actions .submit {
+  background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(110, 69, 226, 0.25);
+}
+
+.modal-actions .submit:hover {
+  background: linear-gradient(135deg, #5d3ac7, #77c4bf);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(110, 69, 226, 0.3);
 }
 
 .modal-actions .cancel {
   background: #f7f7f7;
   color: #555;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .modal-actions .cancel:hover {
   background: #eee;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.modal-actions .submit {
-  background: linear-gradient(135deg, #d4002a, #ff4757);
-  color: white;
-  border: none;
-  box-shadow: 
-    0 3px 10px rgba(212, 0, 42, 0.25),
-    0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-.modal-actions .submit:hover {
-  background: linear-gradient(135deg, #b80025, #e8414e);
-  transform: translateY(-1px);
-  box-shadow: 
-    0 6px 15px rgba(212, 0, 42, 0.3),
-    0 2px 5px rgba(0, 0, 0, 0.08);
-}
-
-/* Стили для select с иконкой */
 .form-group select {
-  height: 48px;
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23555'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
@@ -165,74 +138,45 @@
   background-size: 18px;
 }
 
-/* Микровзаимодействия */
 button:active {
   transform: translateY(0) !important;
-  transition-duration: 0.1s;
 }
-
-/* Подсветка обязательных полей */
-.form-group label[required]:after {
-  content: ' *';
-  color: #d4002a;
-}
-
-
-/* Добавьте в конец файла AddAddressModal.css */
 
 @media (max-width: 768px) {
-      .modal {
-        width: 96%;
-        padding: 20px 16px;
-        max-height: 70vh;
-        overflow-y: auto;
-        margin: 20px 30px;
-    }
-
-  .form-row {
-    flex-direction: column;
-    gap: 12px;
+  .modal {
+    width: 95%;
+    padding: 24px;
   }
 
-  .form-row .form-group {
-    width: 100%;
+  .form-row {
+    grid-template-columns: 1fr;
   }
 
   .modal h2 {
     font-size: 20px;
-    margin-bottom: 18px;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    font-size: 14px;
-    padding: 12px 14px;
   }
 
   .modal-actions {
     flex-direction: column-reverse;
-    gap: 12px;
-  }
-
-  .modal-actions button {
-    width: 100%;
-  }
-
-  .form-group textarea {
-    min-height: 80px;
   }
 }
 
 @media (max-width: 480px) {
- 
+  .modal {
+    padding: 20px 16px;
+  }
 
   .modal h2 {
     font-size: 18px;
   }
 
-  .modal h2:after {
-    width: 50px;
-    height: 2px;
+  .modal h2::after {
+    width: 60px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 14px;
   }
 }
