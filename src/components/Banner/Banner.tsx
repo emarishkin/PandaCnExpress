@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import '../Banner/Banner.css'
-import podarok from '/podarok.svg'
+import '../Banner/Banner.css';
+import podarok from '/podarok.svg';
 
-export const Banner:FC = () => {
+export const Banner: FC = () => {
   return (
     <div className="banner">
       <div className="banner-left">
@@ -15,4 +15,4 @@ export const Banner:FC = () => {
       <button className="banner-button">Пригласить друга</button>
     </div>
   );
-}
+};

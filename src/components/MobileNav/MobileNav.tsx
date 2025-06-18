@@ -1,7 +1,12 @@
-
-import '../MobileNav/MobileNav.css'
+import '../MobileNav/MobileNav.css';
 import { useLocation, useNavigate } from "react-router-dom";
-import { FiHome, FiMapPin, FiUsers, FiCreditCard, FiSettings } from "react-icons/fi";
+import { 
+  FiHome, 
+  FiMapPin, 
+  FiUsers, 
+  FiCreditCard, 
+  FiSettings 
+} from "react-icons/fi";
 
 export default function MobileNav() {
   const navigate = useNavigate();

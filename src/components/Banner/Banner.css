@@ -2,59 +2,88 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff8e1;
-  border: 1px solid #ffe082;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
+  background: linear-gradient(135deg, rgba(110, 69, 226, 0.1) 0%, rgba(136, 211, 206, 0.1) 100%);
+  border: 1px solid rgba(110, 69, 226, 0.2);
+  border-radius: 20px;
+  padding: 24px;
+  margin: 24px 0;
   flex-wrap: wrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(110, 69, 226, 0.1);
 }
 
 .banner-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .banner-icon {
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 4px 8px rgba(110, 69, 226, 0.2));
 }
 
 .banner-text h3 {
   margin: 0;
   font-size: 18px;
+  font-weight: 700;
   color: #333;
 }
 
 .banner-text p {
-  margin: 5px 0 0;
+  margin: 8px 0 0;
   font-size: 14px;
   color: #666;
+  line-height: 1.5;
 }
 
 .banner-button {
-  background-color: #fdd835;
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
   border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(110, 69, 226, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
 }
 
 .banner-button:hover {
-  background-color: #fbc02d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(110, 69, 226, 0.4);
+}
+
+.banner-button:active {
+  transform: translateY(0);
 }
 
 /* Адаптив */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .banner {
     flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .banner-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
   .banner-button {
     width: 100%;
+    padding: 14px;
   }
 }
