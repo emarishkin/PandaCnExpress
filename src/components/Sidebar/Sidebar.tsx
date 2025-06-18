@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import '../Sidebar/Sidebar.css'
 import { useLocation, useNavigate } from "react-router-dom";
 import siderImg from '/siderImg.png'
@@ -30,8 +30,8 @@ export default function Sidebar() {
     <aside className="sidebar">
       <div className="sidebar-header">
         <div className="logo">
-          <img style={{width:120,height:120}} src={logo} alt="" />
-          <h2 style={{fontSize:22,textAlign:'center'}}>PANDA EXPRESS</h2>
+          <img src={logo} alt="Panda Express Logo" />
+          <span className="logo-text">PANDA EXPRESS</span>
         </div>
 
         <button
@@ -61,7 +61,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="user-id-box">
-        <img src={siderImg} alt="" />
+        <img src={siderImg} alt="User ID" />
         <p>
           <strong>Ваш ID: B-4437</strong>
         </p>
