@@ -146,6 +146,7 @@ button:active {
   .modal {
     width: 95%;
     padding: 24px;
+    max-height: 73vh;
   }
 
   .form-row {
@@ -164,6 +165,7 @@ button:active {
 @media (max-width: 480px) {
   .modal {
     padding: 20px 16px;
+    max-height: 77vh;
   }
 
   .modal h2 {
