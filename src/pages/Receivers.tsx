@@ -2,7 +2,7 @@ import { useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AddReceiverModal from "../components/AddReceiverModal/AddReceiverModal";
 import '../style/Receivers.css';
-import { FaUser, FaPhone, FaMapMarkerAlt, FaGlobe } from "react-icons/fa";
+import {  FaPhone, FaMapMarkerAlt, FaGlobe, FaPlus } from "react-icons/fa";
 
 export default function Receivers() {
   const [receivers, setReceivers] = useState([
@@ -40,43 +40,63 @@ export default function Receivers() {
       )}
 
       <DashboardLayout>
-        <div className="receivers-header">
-          <h2>Получатели</h2>
-          <button className="add-button" onClick={() => setModalOpen(true)}>
-            <FaUser /> Добавить получателя
-          </button>
-        </div>
+        <div className="receivers-container">
+          <div className="receivers-header">
+            <h2>Получатели</h2>
+            <button className="add-button" onClick={() => setModalOpen(true)}>
+              <FaPlus /> Добавить получателя
+            </button>
+          </div>
 
-        <div className="receiver-list">
-          {receivers.map((r) => (
-            <div key={r.id} className="receiver-card">
-              <h3>{r.name}</h3>
-              <ul>
-                <li>
-                  <FaPhone style={{ marginRight: 10, color: "#d4002a" }} />
-                  <strong>Телефон:</strong> {r.phone}
-                </li>
-                <li>
-                  <FaGlobe style={{ marginRight: 10, color: "#d4002a" }} />
-                  <strong>Страна:</strong> {r.country}
-                </li>
-                <li>
-                  <FaMapMarkerAlt style={{ marginRight: 10, color: "#d4002a" }} />
-                  <strong>Город:</strong> {r.city}
-                </li>
-                <li>
-                  <FaMapMarkerAlt style={{ marginRight: 10, color: "#d4002a" }} />
-                  <strong>Адрес:</strong> {r.address}
-                </li>
-              </ul>
-              <button 
-                className="delete-button" 
-                onClick={() => handleDelete(r.id)}
-              >
-                Удалить получателя
-              </button>
-            </div>
-          ))}
+          <div className="receiver-list">
+            {receivers.length > 0 ? (
+              receivers.map((r) => (
+                <div key={r.id} className="receiver-card">
+                  <div className="card-header">
+                    <h3>{r.name}</h3>
+                  </div>
+                  <div className="card-body">
+                    <div className="detail-row">
+                      <FaPhone className="detail-icon" />
+                      <span className="detail-label">Телефон:</span>
+                      <span className="detail-value">{r.phone}</span>
+                    </div>
+                    <div className="detail-row">
+                      <FaGlobe className="detail-icon" />
+                      <span className="detail-label">Страна:</span>
+                      <span className="detail-value">{r.country}</span>
+                    </div>
+                    <div className="detail-row">
+                      <FaMapMarkerAlt className="detail-icon" />
+                      <span className="detail-label">Город:</span>
+                      <span className="detail-value">{r.city}</span>
+                    </div>
+                    <div className="detail-row">
+                      <FaMapMarkerAlt className="detail-icon" />
+                      <span className="detail-label">Адрес:</span>
+                      <span className="detail-value">{r.address}</span>
+                    </div>
+                  </div>
+                  <button 
+                    className="delete-button" 
+                    onClick={() => handleDelete(r.id)}
+                  >
+                    Удалить
+                  </button>
+                </div>
+              ))
+            ) : (
+              <div className="empty-state">
+                <h3>Нет добавленных получателей</h3>
+                <button 
+                  className="add-button" 
+                  onClick={() => setModalOpen(true)}
+                >
+                  <FaPlus /> Добавить получателя
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </DashboardLayout>
     </>
