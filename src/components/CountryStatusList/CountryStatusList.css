@@ -1,51 +1,74 @@
 .country-status-list {
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 13px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .country-box {
-  padding: 15px;
-  border-radius: 8px;
+  padding: 16px;
+  border-radius: 12px;
   background: white;
   cursor: pointer;
-  border: 1px solid #e0e0e0;
-  transition: all 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .country-box:hover {
-  border-color: #d4002a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border-color: rgba(110, 69, 226, 0.3);
 }
 
 .country-box.active {
-  background: #fff0f3;
-  border-color: #d4002a;
-  color: #d4002a;
-  font-weight: 500;
+  background: white;
+  border: 2px solid #6e45e2;
+  box-shadow: 0 4px 20px rgba(110, 69, 226, 0.15);
+  color: #6e45e2;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.country-box.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #6e45e2;
+  border-radius: 3px 0 0 3px;
 }
 
 .badge {
-  background: #d4002a;
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
   color: white;
   border-radius: 12px;
-  padding: 3px 8px;
+  padding: 4px 10px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(110, 69, 226, 0.3);
 }
 
 @media (max-width: 768px) {
   .country-status-list {
     flex-direction: row;
     overflow-x: auto;
-    padding-bottom: 10px;
+    padding: 12px;
     scrollbar-width: none;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
   }
   
   .country-status-list::-webkit-scrollbar {
@@ -55,5 +78,6 @@
   .country-box {
     min-width: 160px;
     white-space: nowrap;
+    font-size: 14px;
   }
 }

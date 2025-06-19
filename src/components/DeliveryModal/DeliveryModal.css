@@ -1,125 +1,187 @@
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
+  backdrop-filter: blur(4px);
 }
 
 .delivery-modal {
-  overflow-y: auto;
-  max-height: 70vh;
-  margin: 0px 23px;
   background: white;
-  border-radius: 16px;
-  padding: 23px;
+  border-radius: 24px;
+  padding: 32px;
   width: 600px;
   max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
-  animation: fadeIn 0.2s ease;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.delivery-modal h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 24px;
+  font-weight: 600;
 }
 
 .close-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
+  top: 24px;
+  right: 24px;
+  background: rgba(0, 0, 0, 0.05);
   border: none;
-  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   color: #666;
-  transition: color 0.2s;
-}
-
-.close-btn:hover {
-  color: #d4002a;
-}
-
-.delivery-options {
-  display: flex;
-  gap: 16px;
-  margin: 20px 0;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.option {
-  flex: 1;
-  min-width: 160px;
-  border: 2px solid #eee;
-  padding: 12px;
-  border-radius: 12px;
-  text-align: center;
-  cursor: pointer;
   transition: all 0.2s;
 }
 
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #6e45e2;
+}
+
+.delivery-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.option {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: white;
+}
+
 .option:hover {
-  border-color: #d4002a;
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(110, 69, 226, 0.3);
 }
 
 .option.selected {
-  border-color: #d4002a;
-  background-color: rgba(212, 0, 42, 0.05);
+  border: 2px solid #6e45e2;
+  background: white;
+  box-shadow: 0 8px 24px rgba(110, 69, 226, 0.15);
 }
 
 .option img {
-  width: 100px;
-  height: auto;
-  margin-bottom: 8px;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 12px;
 }
 
 .option small {
-  color: #d4002a;
+  color: #6e45e2;
   display: block;
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 12px;
+  font-weight: 500;
 }
 
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 16px;
+  margin-top: 24px;
 }
 
 .cancel-btn,
 .confirm-btn {
-  padding: 10px 18px;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
   border: none;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .cancel-btn {
-  background: #f0f0f0;
-  color: #333;
+  background: rgba(0, 0, 0, 0.05);
+  color: #666;
 }
 
 .cancel-btn:hover {
-  background: #e0e0e0;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .confirm-btn {
-  background: #d4002a;
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
   color: white;
+  box-shadow: 0 4px 15px rgba(110, 69, 226, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 .confirm-btn:hover {
-  background: #b30024;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(110, 69, 226, 0.4);
+}
+
+.confirm-btn:active {
+  transform: translateY(0);
 }
 
 .confirm-btn:disabled {
   background: #cccccc;
+  box-shadow: none;
   cursor: not-allowed;
+  transform: none !important;
+}
+
+.confirm-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(30deg);
+  transition: all 0.3s ease;
+}
+
+.confirm-btn:hover::after {
+  left: 100%;
+  top: 100%;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .delivery-modal {
+    padding: 24px 16px;
+  }
+  
+  .delivery-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .close-btn {
+    top: 16px;
+    right: 16px;
+  }
 }

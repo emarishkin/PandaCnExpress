@@ -1,69 +1,127 @@
-/* Добавьте эти стили в ваш Addresses.css */
+/* Обновленный Addresses.css */
+.addresses-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.addresses-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.add-address-button {
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(110, 69, 226, 0.3);
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-address-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(110, 69, 226, 0.4);
+}
+
+.add-address-button:active {
+  transform: translateY(0);
+}
+
+.add-address-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(30deg);
+  transition: all 0.3s ease;
+}
+
+.add-address-button:hover::after {
+  left: 100%;
+  top: 100%;
+}
+
+.address-cards.compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+}
 
 .address-card {
   background: white;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  border: 1px solid #eaeaea;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
-  margin-bottom: 25px;
-      width: 220px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .address-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+.address-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #6e45e2, #88d3ce);
 }
 
 .card-header h2 {
-  font-size: 20px;
-  color: #d4002a;
-  margin: 0;
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 12px 0;
   font-weight: 600;
-  flex: 1;
-}
-
-.delete-button {
-  background: #f8f8f8;
-  border: 1px solid #e0e0e0;
-  color: #d4002a;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.delete-button:hover {
-  background: #ffeeee;
 }
 
 .address-description {
   color: #666;
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .address-details {
-  margin-bottom: 15px;
+  flex-grow: 1;
 }
 
 .address-details p {
-  margin: 10px 0;
-  font-size: 15px;
+  margin: 0 0 10px 0;
+  font-size: 14px;
   color: #333;
   display: flex;
   align-items: center;
@@ -71,89 +129,55 @@
 
 .detail-icon {
   margin-right: 10px;
-  color: #d4002a;
+  color: #6e45e2;
   min-width: 16px;
 }
 
-.working-hours {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid #f0f0f0;
-  color: #666;
-  font-size: 14px;
-  font-style: italic;
-  display: flex;
-  align-items: center;
+.delete-button {
+  background: white;
+  color: #d4002a;
+  border: 1px solid rgba(212, 0, 42, 0.3);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-end;
+  margin-top: auto;
 }
 
-.address-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(to bottom, #d4002a, #ff4d4d);
+.delete-button:hover {
+  background: rgba(212, 0, 42, 0.05);
+  border-color: #d4002a;
 }
 
 .empty-state {
   text-align: center;
   padding: 40px 20px;
-  background: #fafafa;
-  border-radius: 12px;
-  border: 1px dashed #ddd;
-}
-
-.empty-state img {
-  max-width: 200px;
-  margin-bottom: 20px;
+  background: white;
+  border-radius: 16px;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  grid-column: 1 / -1;
 }
 
 .empty-state h3 {
   color: #555;
   margin-bottom: 20px;
+  font-size: 16px;
 }
-
-.add-address-button {
-  background: #d4002a;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-  display: inline-flex;
-  align-items: center;
-}
-
-.add-address-button:hover {
-  background: #b30022;
-}
-.addresses-header {
-    flex-direction: column;
-    display: flex
-;
-    align-items: end;
-    margin-bottom: 20px;
-}
-
-.address-cards.compact{
- display: flex;
- flex-wrap: wrap;
- gap: 50px;
-}
-
 
 @media (max-width: 768px) {
-  .card-header {
-    flex-direction: column;
-    align-items: flex-start;
+  .addresses-content {
+    padding: 16px;
+    border-radius: 16px;
   }
   
-  .delete-button {
-    margin-top: 10px;
-    align-self: flex-end;
+  .address-cards.compact {
+    grid-template-columns: 1fr;
+  }
+  
+  .address-card {
+    min-height: auto;
   }
 }
