@@ -168,7 +168,7 @@ button:active {
 @media (max-width: 768px) {
   .modal {
     max-height: 73vh;
-    width: 95%;
+    width: 90%;
     padding: 24px;
   }
 
